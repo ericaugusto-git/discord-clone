@@ -26,14 +26,14 @@ const ChannelIdPage = async (
 
     const channel = await db.channel.findUnique({
        where: {
-        id: params.channelId,
+        id: params?.channelId,
         
        }
     });
 
     const member = await db.member.findFirst({
         where: {
-            serverId: params.serverId,
+            serverId: params?.serverId,
             profileId: profile.id
         }
     });

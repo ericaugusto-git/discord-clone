@@ -12,7 +12,7 @@ const ServerIdLaayout = async (
         return redirectToSignIn();
     const server = await db.server.findUnique({
         where: {
-            id: params.serverId,
+            id: params?.serverId,
             members: {
                 some: {
                     profileId: profile.id
@@ -27,7 +27,7 @@ const ServerIdLaayout = async (
     return ( 
         <div className="h-full">
             <div className="hidden fixed md:flex h-full w-60 z-20 flex-col inset-y-0">
-                <ServerSidebar serverId={params.serverId}/>
+                <ServerSidebar serverId={params?.serverId}/>
             </div>
             <main className="h-full md:pl-60">
             {children}

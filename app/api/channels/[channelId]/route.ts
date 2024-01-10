@@ -17,7 +17,7 @@ export async function DELETE(req: Request, {params}: {params: {channelId: string
             return new NextResponse("Server ID missing", {status: 400});
         }};
 
-        if(!params.channelId){
+        if(!params?.channelId){
             return new NextResponse("Channel ID missing", {status: 400});
         }
         
@@ -36,7 +36,7 @@ export async function DELETE(req: Request, {params}: {params: {channelId: string
             data: {
                 channels: {
                     delete: {
-                        id: params.channelId,
+                        id: params?.channelId,
                         name: {
                             //TODO can i insensitive case?
                            not: "general"
@@ -65,7 +65,7 @@ export async function PATCH(req: Request, {params}: {params: {channelId: string}
             return new NextResponse("Server ID missing", {status: 400});
         }};
 
-        if(!params.channelId){
+        if(!params?.channelId){
             return new NextResponse("Channel ID missing", {status: 400});
         }
         
@@ -92,7 +92,7 @@ export async function PATCH(req: Request, {params}: {params: {channelId: string}
                 channels: {
                     update: {
                         where: {
-                            id: params.channelId,
+                            id: params?.channelId,
                             NOT: {
                                 //TODO can i insensitive case?
                                name: "general"

@@ -11,7 +11,7 @@ export async function PATCH(req: Request, {params} : {params: {serverId:string}}
         const {name, imageUrl} = await req.json();
         const server = await db.server.update({
             where: {
-                id: params.serverId,
+                id: params?.serverId,
                 profileId: profile.id
             },
             data: {
@@ -36,7 +36,7 @@ export async function DELETE(req: Request, {params}: {params: {serverId: string}
         const server = await db.server.delete({
             where: {
                 profileId: profile.id,
-                id: params.serverId
+                id: params?.serverId
             }
         })
 

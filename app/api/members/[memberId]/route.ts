@@ -18,7 +18,7 @@ export async function PATCH(req: Request, {params} : {params: {memberId: string}
             return new NextResponse("Server ID missing", {status: 400});
         }}
 
-        if(!params.memberId){
+        if(!params?.memberId){
             return new NextResponse("Member ID missing", {status: 400});
         }
 
@@ -31,7 +31,7 @@ export async function PATCH(req: Request, {params} : {params: {memberId: string}
                 members: {
                     update: {
                         where: {
-                            id: params.memberId,
+                            id: params?.memberId,
                             profileId:{
                                 not: profile.id
                             }
@@ -75,7 +75,7 @@ export async function DELETE(req:Request, {params} : {params: {memberId:string}}
             return new NextResponse("Server ID missing", {status: 400});
         }}
 
-        if(!params.memberId){
+        if(!params?.memberId){
             return new NextResponse("Member ID missing", {status: 400});
         }
 
@@ -87,7 +87,7 @@ export async function DELETE(req:Request, {params} : {params: {memberId:string}}
             data: {
                 members: {
                     deleteMany: {
-                        id: params.memberId,
+                        id: params?.memberId,
                         profileId: {
                             not: profile.id
                         }
