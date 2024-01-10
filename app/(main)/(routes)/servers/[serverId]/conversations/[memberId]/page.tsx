@@ -39,7 +39,7 @@ const MemberIdPage = async ({params, searchParams}:MemberIdPageProps) => {
 
     const conversation = await getOrCreateConversation(currentMember.id, params.memberId);
     if(!conversation){
-        return redirect(`/servers/${params.serverId}`);
+        return redirect(`/servers/${params?.serverId}`);
     }
 
     const {memberOne, memberTwo} = conversation;
