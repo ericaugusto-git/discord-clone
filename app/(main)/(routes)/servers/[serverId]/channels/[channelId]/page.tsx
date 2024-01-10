@@ -1,9 +1,11 @@
 import ChatHeader from "@/components/chat/chat-header";
 import ChatInput from "@/components/chat/chat-input";
 import ChatMessages from "@/components/chat/chat-messages";
+import { MediaRoom } from "@/components/media-room";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
+import { ChannelType } from "@prisma/client";
 import { channel } from "diagnostics_channel";
 import { redirect } from "next/navigation";
 
@@ -45,8 +47,9 @@ const ChannelIdPage = async (
             serverId={channel.serverId}
             type="channel"
             />
-            <div className="flex-1 overflow-y-auto">
-            <ChatMessages
+            {channel.type === ChannelType.TEXT && (
+                <>
+                <ChatMessages
                 member={member}
                 name={channel.name}
                 chatId={channel.id}
@@ -60,16 +63,31 @@ const ChannelIdPage = async (
                 paramKey="channelId"
                 paramValue={channel.id}
             />
-            </div>
             <ChatInput
-            name={channel.name}
-            type="channel"
-            apiUrl="/api/socket/messages"
-            query={{
-                channelId: channel.id,
-                serverId: channel.serverId
-            }}
-            />
+                name={channel.name}
+                type="channel"
+                apiUrl="/api/socket/messages"
+                query={{
+                    channelId: channel.id,
+                    serverId: channel.serverId
+                }}
+                />
+             </>
+            )}
+      {channel.type === ChannelType.AUDIO && (
+        <MediaRoom
+          chatId={channel.id}
+          video={false}
+          audio={true}
+        />
+      )}
+      {channel.type === ChannelType.VIDEO && (
+        <MediaRoom
+          chatId={channel.id}
+          video={true}
+          audio={true}
+        />)
+      }
         </div>
      );
 }
