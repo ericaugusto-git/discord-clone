@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🎉 Discourse - Totally Original Live Chat App
 
-## Getting Started
+This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a ton of new features outside the course scope.
 
-First, run the development server:
+### 🚀 Main Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **💬 Real-time Messaging**
+  - Real-time messaging using Socket.io with WebSocket fallback and polling alerts.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **📎 Attachments**
+  - Send attachments as messages using UploadThing.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **✏️ Message Management**
+  - Delete and edit messages in real time for all users.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **🔊 Channels**
+  - Create text, audio, and video call channels for seamless communication.
 
-## Learn More
+- **✉️ 1:1 Conversations**
+  - Direct messaging and 1:1 video calls between members.
 
-To learn more about Next.js, take a look at the following resources:
+- **🛠️ Member Management**
+  - Manage members with options to kick, change roles (Guest/Moderator), and more.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **🔗 Invitation System**
+  - Generate unique invite links and manage server invitations efficiently.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **📜 Infinite Scrolling**
+  - Load messages in batches of 10 using `@tanstack/query` for infinite scrolling.
 
-## Deploy on Vercel
+- **🏠 Server Creation & Customization**
+  - Create and customize servers with full control over settings.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **🌗 Light / Dark Mode**
+  - Support for both light and dark themes, allowing users to switch seamlessly.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **🗄️ ORM & Database**
+  - ORM setup using Prisma with MySQL database hosted on Planetscale.
+
+- **🔐 Authentication**
+  - Secure authentication implemented with Clerk.
+
+## Changes and new Features
+
+- **💅 Brand new beautiful UI**
+  - Aesthetically pleasing UI built with TailwindCSS and ShadcnUI.
+
+- **📱 Fully Responsive**
+  - The new Design is fully responsive with optimized mobile UI.
+
+- **🗄️ New Database**
+  - Because of the end of Planetscale's hobby free "forever" plan, I'm now hosting the MySql database on [Aiven](https://aiven.io) 

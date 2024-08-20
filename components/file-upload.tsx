@@ -10,7 +10,6 @@ type FIleUploadProps = {
 
 const FileUpload = ({onChange, value, endpoint}: FIleUploadProps) => {
     const fileType = value?.split('.').pop();
-    console.log(value)
     if(value && fileType != 'pdf'){
         return (
             <div className="relative flex items-center justify-center h-20 w-20">
