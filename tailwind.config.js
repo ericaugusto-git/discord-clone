@@ -20,6 +20,12 @@ module.exports = withUt({
         },
       },
       extend: {
+        backgroundColor: {
+          'chat-grey': '#333333',
+          'server-sidebar': '#121212',
+          'bento-item': '#242424'
+
+        },
         colors: {
           border: "hsl(var(--border))",
           input: "hsl(var(--input))",
@@ -59,6 +65,11 @@ module.exports = withUt({
           lg: "var(--radius)",
           md: "calc(var(--radius) - 2px)",
           sm: "calc(var(--radius) - 4px)",
+          'bento-wrapper-radius': '40px',
+          'bento-item-radius': '25px'
+        },
+        gap: {
+          'bento-gap': '15px'
         },
         keyframes: {
           "accordion-down": {

@@ -1,6 +1,6 @@
+import ChatHeader from "@/components/chat/chat-header";
 import ServerSidebar from "@/components/server/server-sidebar";
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
@@ -10,28 +10,34 @@ const ServerIdLaayout = async (
     const profile = await currentProfile();
     if(!profile)
         return redirectToSignIn();
-    const server = await db.server.findUnique({
-        where: {
-            id: params?.serverId,
-            members: {
-                some: {
-                    profileId: profile.id
-                }
-            }
-        }
-    })
+    // const server = await db.server.findUnique({
+    //     where: {
+    //         id: params?.serverId,
+    //         members: {
+    //             some: {
+    //                 profileId: profile.id
+    //             }
+    //         }
+    //     }
+    // })
+
     //TODO: tell the user the server was deleted/he is not a member
     if(!profile){
         redirect("/");
     }
+    console.log(params)
+    
     return ( 
-        <div className="h-full">
-            <div className="hidden fixed md:flex h-full w-60 z-20 flex-col inset-y-0">
-                <ServerSidebar serverId={params?.serverId}/>
+        <div className="h-full flex gap-bento-gap flex-col">
+            <ChatHeader/>
+            <div className="h-full flex">
+                <div className="hidden md:flex h-full w-60 z-20 flex-col">
+                    <ServerSidebar serverId={params?.serverId}/>
+                </div>
+                <section className="h-full w-full bg-chat-grey rounded-r-bento-item-radius">
+                    {children}
+                </section>
             </div>
-            <main className="h-full md:pl-60">
-            {children}
-            </main>
         </div>
      );
 }

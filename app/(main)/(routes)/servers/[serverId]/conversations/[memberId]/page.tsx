@@ -47,13 +47,13 @@ const MemberIdPage = async ({params, searchParams}:MemberIdPageProps) => {
     const otherMember = memberOne.profileId === profile.id ? memberTwo : memberOne;
 
     return (  
-        <div className="flex flex-col h-full">
-           <ChatHeader
+        <div className="flex gap-bento-gap flex-col h-full">
+           {/* <ChatHeader
            imageUrl={otherMember.profile.imageUrl}
            name={otherMember.profile.name}
            serverId={params?.serverId}
            type="conversation"
-           />
+           /> */}
            {searchParams.video && (
             <MediaRoom
             chatId={conversation.id}

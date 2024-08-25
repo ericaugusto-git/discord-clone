@@ -26,9 +26,9 @@ const Sidebar = async () => {
         }
     })
     return ( 
-    <div className="space-y-4 flex flex-col items-center  h-full 
-    text-pretty w-full 
-    dark:bg-[#1E1F22] bg-[#E3E5E8] py-3">
+    <div className="flex flex-col items-center  h-full 
+    text-pretty w-full rounded-bento-item-radius
+    dark:bg-bento-item bg-[#E3E5E8] py-3">
         <NavigationAction/>
         <Separator 
         className="mt-10 h-[2px] bg-zinc-300  dark:bg-zinc-700
