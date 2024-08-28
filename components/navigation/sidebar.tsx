@@ -29,7 +29,13 @@ const Sidebar = async () => {
     <div className="flex flex-col items-center  h-full 
     text-pretty w-full rounded-bento-item-radius
     dark:bg-bento-item bg-[#E3E5E8] py-3">
-        <NavigationAction/>
+        <NavigationItem
+
+        name={'direct'}
+        imageUrl="/logo.webp"
+        >
+
+        </NavigationItem>
         <Separator 
         className="mt-10 h-[2px] bg-zinc-300  dark:bg-zinc-700
         rounded-md w-10 mx-auto my-6"
@@ -46,6 +52,7 @@ const Sidebar = async () => {
                     </NavigationItem>
                 </div>
             ))}
+            <NavigationAction/>
         </ScrollArea>
         <div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
             <ModeToggle/>

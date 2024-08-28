@@ -29,8 +29,10 @@ const ServerIdLaayout = async (
     
     return ( 
         <div className="h-full flex gap-bento-gap flex-col">
-            <ChatHeader/>
-            <div className="h-full flex">
+            <div className="">
+                <ChatHeader/>
+            </div>
+            <div className="h-full flex min-h-0">
                 <div className="hidden md:flex h-full w-60 z-20 flex-col">
                     <ServerSidebar serverId={params?.serverId}/>
                 </div>

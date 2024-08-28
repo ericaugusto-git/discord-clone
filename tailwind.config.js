@@ -23,7 +23,8 @@ module.exports = withUt({
         backgroundColor: {
           'chat-grey': '#333333',
           'server-sidebar': '#121212',
-          'bento-item': '#242424'
+          'bento-item': '#242424',
+          'direct-sidebar-accent': '#212121'
 
         },
         colors: {
