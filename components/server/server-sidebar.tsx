@@ -11,6 +11,7 @@ import { Separator } from "../ui/separator";
 import ServerSection from "./server-section";
 import ServerChannel from "./sever-channel";
 import ServerMember from "./server-member";
+import CurrentUser from "../current-user";
 
 type ServerSidebarProps = {
     serverId: string
@@ -199,6 +200,7 @@ const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
                     </div>
                 )}
             </ScrollArea>
+            <CurrentUser profile={profile}/>
         </div>
      );
 }

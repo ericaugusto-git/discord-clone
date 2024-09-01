@@ -8,12 +8,16 @@ import { v4 as uuidv4 } from 'uuid';
 export async function POST(request: Request) {
     try{
         const profile = await currentProfile();
+        
+        
 
         if(!profile){
             throw new NextResponse("Unauthorized", {status: 401});
         }
         
        const {name, imageUrl} = await request.json();
+       
+       
        const server = await db.server.create({
             data: {
                 profileId: profile.id,
@@ -35,6 +39,7 @@ export async function POST(request: Request) {
                 }
             }
         })
+        
         return NextResponse.json(server);
     }catch(error){
         console.log("[FROM_SERVERS_POST]", error);

@@ -12,13 +12,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         const profile = await currentProfilePages(req);
         const {content, fileUrl} = req.body;
         console.log(req.body);
-        const {conversationId} = req.query;
+        const {directId} = req.query;
 
         if(!profile){
             return res.status(401).json({error: "Unauthorized"})
         }
-        if(!conversationId){
-            return res.status(401).json({error: "Conversation ID missing"})
+        if(!directId){
+            return res.status(401).json({error: "Direct ID missing"})
         }
 
         if(!content){
@@ -26,42 +26,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         }
 
         
-        const conversation = await db.conversation.findFirst({
+        const direct = await db.direct.findFirst({
             where: {
-                id: conversationId as string,
+                id: directId as string,
                 OR: [
                     {
-                        memberOne: {
-                            profileId: profile.id
+                        profileOne: {
+                            id: profile.id
                         }
                     },
                     {
-                        memberTwo: {
-                            profileId: profile.id
+                        profileTwo: {
+                            id: profile.id
                         }
                     }
                 ]
             },
             include: {
-                memberOne: {
-                    include: {
-                        profile: true
-                    }
-                },
-                memberTwo: {
-                    include: {
-                        profile: true
-                    }
-                }
+                profileOne: true,
+                profileTwo: true
             }
         });
 
-        if(!conversation){
-            return res.status(404).json({message: "Conversation not found"}); 
+        if(!direct){
+            return res.status(404).json({message: "Direct not found"}); 
         }
 
-        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo;
-        if(!member){
+        const convoProfile = direct.profileOne.id === profile.id ? direct.profileOne : direct.profileTwo;
+        if(!convoProfile){
             return res.status(404).json({message: "Member not found"}); 
         }
 
@@ -69,19 +61,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             data: {
                 content,
                 fileUrl,
-                conversationId: conversationId as string,
-                memberId: member.id
+                directId: directId as string,
+                profileId: convoProfile.id
             },
             include: {
-                member: {
-                    include: {
-                        profile: true
-                    }
-                }
+                profile: true
+                // member: {
+                //     include: {
+                //         profile: true
+                //     }
+                // }
             }
         })
 
-        const channelKey = `chat:${conversationId}:messages`;
+        const channelKey = `chat:${directId}:messages`;
 
         res?.socket?.server?.io?.emit(channelKey, message);
 

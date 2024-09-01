@@ -13,7 +13,7 @@ const MainLayout = ({children}: {children: React.ReactNode}) => {
             <main className="h-full w-full">
             {children}
             </main>
-            <div className="absolute inset-4 rounded-bento-wrapper-radius border-2 border-white -z-10"></div>
+            <div className="absolute inset-4 rounded-bento-wrapper-radius border-2 border-[#747474] -z-10"></div>
         </div>
      );
 }

@@ -5,6 +5,8 @@ import ActionTooltip from "../action-tooltip";
 import { cn } from "@/lib/utils";
 import { useParams , useRouter} from "next/navigation";
 import { currentProfile } from "@/lib/current-profile";
+import UserAvatar from "../user-avatar";
+import BackgroundImage from "../ui/background-image";
 
 type NavigationItemProps = {
     id?: string,
@@ -44,12 +46,7 @@ const NavigationItem = (
             
             <div className={cn("relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden",
                 params?.serverId === id && "bg-primary/10 text-primary rounded-[16px]")}>
-                <Image 
-                fill
-            
-                alt="Channel"
-                src={imageUrl}
-                />
+                    <BackgroundImage src={imageUrl} size={'48px'}/>
 
             </div>
 

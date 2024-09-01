@@ -61,7 +61,7 @@ const ChatPage = ({
                     <ChatInput
                         name={name}
                         type={type}
-                        apiUrl={chatProps.apiUrl}
+                        apiUrl={chatProps.socketUrl}
                         query={chatProps.socketQuery}
                     />
                 </>

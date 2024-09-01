@@ -1,5 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
+import { initialProfile } from "@/lib/initial-profile";
 import { redirectToSignIn } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -12,9 +13,10 @@ interface InviteCodePageProps {
 const InviteCodePage = async (
     {params}: InviteCodePageProps
 ) => {
-    const profile = await currentProfile();
+    const profile = await initialProfile();
     if(!profile){
-        return redirectToSignIn();
+        redirect("http://localhost:3000/sign-in"); // Use full URL or relative path
+        return;
     }
 
     if(!params?.inviteCode){

@@ -25,7 +25,7 @@ const ServerIdLaayout = async (
     if(!profile){
         redirect("/");
     }
-    console.log(params)
+    
     
     return ( 
         <div className="h-full flex gap-bento-gap flex-col">
