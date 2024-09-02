@@ -1,23 +1,35 @@
 ## 🎉 Discourse - Totally Original Live Chat App
 
-This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a ton of new features outside the course scope.
+This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a new design and some new features outside of the course scope. Check it out:
 
-### 🚀 Main Features from the course
+### 🚀 Main Features
 
-- **💬 Real-time Messaging**
-  - Real-time messaging using Socket.io with WebSocket fallback and polling alerts.
+- **💬 Messaging**
+  - Real-time messaging using [Socket.IO](https://socket.io) WebSocket and native polling fallback.
+
+- **🔊 Video and Audio call**
+  - Realtime video and audio call with [LiveKit](https://livekit.io)
 
 - **📎 Attachments**
-  - Send attachments as messages using UploadThing.
+  - Send attachments as messages using [UploadThing](https://uploadthing.com).
+
+- **🗄️ ORM & Database**
+  - ORM setup using Prisma with MySQL. 
+
+- **🔐 Authentication**
+  - Secure authentication implemented with [Clerk](https://clerk.com).
+
+- **📜 Infinite Scrolling**
+  - Load messages in batches of 15 using [@tanstack/query](https://tanstack.com/query/latest) for infinite scrolling.
+
+- **🌗 Light / Dark Mode**
+  - Support for both light and dark themes with [TailwindCSS](https://tailwindcss.com)
+
+- **🏠 Server Creation & Customization**
+  - Create and customize servers.
 
 - **✏️ Message Management**
-  - Delete and edit messages in real time for all users.
-
-- **🔊 Channels**
-  - Create text, audio, and video call channels for seamless communication.
-
-- **✉️ 1:1 Conversations**
-  - Direct messaging and 1:1 video calls between members.
+  - Delete and edit messages in real time.
 
 - **🛠️ Member Management**
   - Manage members with options to kick, change roles (Guest/Moderator), and more.
@@ -25,20 +37,6 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **🔗 Invitation System**
   - Generate unique invite links and manage server invitations efficiently.
 
-- **📜 Infinite Scrolling**
-  - Load messages in batches of 10 using `@tanstack/query` for infinite scrolling.
-
-- **🏠 Server Creation & Customization**
-  - Create and customize servers with full control over settings.
-
-- **🌗 Light / Dark Mode**
-  - Support for both light and dark themes, allowing users to switch seamlessly.
-
-- **🗄️ ORM & Database**
-  - ORM setup using Prisma with MySQL database hosted on Planetscale.
-
-- **🔐 Authentication**
-  - Secure authentication implemented with Clerk.
 
 ### ✨ Changes and new Features after the course
 
@@ -61,7 +59,10 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
   - Added the ability to add and manage friends.
 
 - **📝 Channel Descriptions**
-  - Channels can now have custom descriptions, providing more context and information about each channel's purpose.
+  - Channels can now have custom descriptions, providing more context and information about each channels purpose.
+
+- **✉️ 1:1 Directs**
+  - Direct messaging and 1:1 video calls.
 
 
 

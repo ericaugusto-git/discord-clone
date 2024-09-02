@@ -48,8 +48,7 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
                     paramValue: direct.id,
                 }}
                 // member={currentMember}
-                // isVideo={!!searchParams.video}
-                channelType={ChannelType.TEXT}
+                channelType={searchParams.video ? ChannelType.VIDEO :  ChannelType.TEXT}
                 chat={{otherMember}}
                 currentProfile={profile}
                 name={otherMember.name}
