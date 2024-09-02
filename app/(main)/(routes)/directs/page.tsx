@@ -3,8 +3,7 @@ import WelcomePage from "@/components/welcome-page";
 import { currentProfile } from "@/lib/current-profile";
 import { getDirects } from "@/lib/direct";
 
-const Direct = async ({children}: {children: React.ReactNode}) => {
-
+const Direct = async () => {
     return;
 }
 

@@ -1,11 +1,11 @@
-import { Channel, Conversation, Profile, Server } from "@prisma/client";
+import { Channel, Profile, Server } from "@prisma/client";
 import { create } from "zustand";
 
-export type ChatType = "channel" | "conversation";
-export type Chat = Channel | {otherMember: Profile} | null
+export type ChatType = "channel" | "direct" | null;
+export type Chat = Channel | {otherMember: Profile}  | null 
 type CurrentChatStore = {
     currentChat: Chat,
-    type: ChatType | null,
+    type: ChatType,
     setCurrentChat: (type: ChatType, currentChat: Chat) => void
 }
 

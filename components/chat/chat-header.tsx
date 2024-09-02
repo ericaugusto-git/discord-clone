@@ -10,7 +10,7 @@ import { useCurrentChat } from "@/hooks/use-current-chat-store";
 interface ChatHeaderProps {
     serverId: string;
     name: string;
-    type: "channel" | "conversation";
+    type: "channel" | "direct";
     imageUrl?: string
 }
 // {serverId,
@@ -19,7 +19,11 @@ interface ChatHeaderProps {
 //     imageUrl
 const ChatHeader = () => {
     const {type, currentChat} = useCurrentChat();
-    // if (!currentChat) return null;
+    if (!currentChat) return null;
+    const direct = 'otherMember' in currentChat ? currentChat : null;
+    const server =  'name' in currentChat ? currentChat : null;
+    if(!direct && !server)
+        return null;
     return ( 
         <div className="text-md font-semibold px-3 flex items-center h-12 bg-bento-item rounded-bento-item-radius">
             {currentChat && (
@@ -28,17 +32,19 @@ const ChatHeader = () => {
                 {type === "channel" && (
                     <Hash className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2"/>
                 )}
-                {type === 'conversation'  && (
-                    <UserAvatar
-                    src={'otherMember' in currentChat ? currentChat.otherMember.imageUrl : ''}
-                    className="h-8 w-8 md:h-8 md:w-8 mr-2 text-zinc-500 dark:text-zinc-400"
-                    />
+                {type === 'direct'  && (
+                    <>
+                        <UserAvatar
+                        src={direct?.otherMember.imageUrl}
+                        className="h-8 w-8 md:h-8 md:w-8 mr-2 text-zinc-500 dark:text-zinc-400"
+                        />
+                    </>
                 )}
-                <p className="font-semibold text-md text-black dark:text-white">
-                    {'name' in currentChat && currentChat.name}
+                <p className="font-semibold text-black dark:text-white">
+                    {server?.name ?? direct?.otherMember.name}
                 </p>
                 <div className="ml-auto flex item-center">
-                    {type === "conversation" && (<ChatVideoButton/>)}
+                    {type === "direct" && (<ChatVideoButton/>)}
                     <SocketIndicator/>
                 </div>
                 </>

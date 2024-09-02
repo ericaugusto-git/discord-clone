@@ -1,6 +1,6 @@
 "use client"
 
-import { Member, Message, Profile } from "@prisma/client";
+import { DirectMessage, Member, Message, Profile } from "@prisma/client";
 import ChatWelcome from "./chat-welcome";
 import { useChatQuery } from "@/hooks/use-chat-query";
 import { Loader2, ServerCrash } from "lucide-react";
@@ -13,13 +13,14 @@ import { useChatScroll } from "@/hooks/use-chat-scroll";
 interface ChatMessagesProps {
     name:string;
     member: Member;
+    currentProfile?: Profile;
     chatId: string;
     apiUrl:string;
     socketUrl: string;
     socketQuery: Record<string, string>;
-    paramKey: "channelId" | "conversationId";
+    paramKey: "channelId" | "directId";
     paramValue: string;
-    type: "channel" | "conversation";
+    type: "channel" | "direct";
     
 }
 
@@ -31,8 +32,10 @@ type MessageWithMemberWithProfile = Message & {
     }
 }
 
+type DirectMsgWithProfile = DirectMessage & {profile: Profile}
+
 const ChatMessages = ({
-    name, member, chatId, apiUrl, socketUrl, socketQuery, paramKey, paramValue, type
+    name, member, currentProfile, chatId, apiUrl, socketUrl, socketQuery, paramKey, paramValue, type
 }: ChatMessagesProps) => {
     const queryKey = `chat:${chatId}`
     const addKey = `chat:${chatId}:messages`
@@ -53,6 +56,7 @@ const ChatMessages = ({
     const chatRef = useRef<ElementRef<"div">>(null);
     const bottomRef = useRef<ElementRef<"div">>(null);    
     useChatScroll({chatRef, bottomRef, loadMore: fetchNextPage, shouldLoadMore: !isFetchingNextPage && !!hasNextPage, count: data?.pages?.[0]?.items?.length || 0})
+   console.log("data:", data)
     if(status === "pending"){
         return (
             <div className="h-full flex flex-col flex-1 justify-center items-center">
@@ -63,6 +67,7 @@ const ChatMessages = ({
             </div>
         ) 
     }
+
     if(status === "error"){
         return (
             <div className="h-full flex flex-col flex-1 justify-center items-center">
@@ -73,6 +78,7 @@ const ChatMessages = ({
             </div>
         ) 
     }
+
     return ( 
         <div ref={chatRef} className="h-full flex flex-col py-4 overflow-y-auto">
             {!hasNextPage && (
@@ -84,6 +90,7 @@ const ChatMessages = ({
             />
                 </>
             )}
+
             {hasNextPage && (
                 <div className="flex justify-center">
                     {isFetchingNextPage ? (
@@ -94,13 +101,16 @@ const ChatMessages = ({
                     }
                 </div>
             )}
+
             <div className="flex flex-col-reverse mt-auto">
                 {data?.pages?.map((group, i) => (
                     <Fragment key={i}>
-                        {group.items.map((message: MessageWithMemberWithProfile) => (
+                        {group.items.map((message: any) => (
                                 <ChatItem 
                                 currentMember={member}
-                                member={message.member}
+                                currentProfile={currentProfile}
+                                messageMember={message.member}
+                                directProfile={message.profile}
                                 key={message.id}
                                 id={message.id}
                                 content={message.content}

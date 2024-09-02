@@ -17,18 +17,24 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import { useModal } from "@/hooks/use-modal-store";
 import { useParams, useRouter } from "next/navigation";
+import { redirectToDirect } from "@/lib/direct-redirect";
 
 
 interface ChatItemProps {
     id: string;
     content: string;
-    member: Member & {
+    
+    messageMember?: Member & {
         profile: Profile
     };
+    currentMember?: Member;
+
+    currentProfile?: Profile,
+    directProfile?: Profile,
+    
     timestamp: string;
     fileUrl: string | null;
     deleted: boolean;
-    currentMember: Member;
     isUpdated: boolean;
     socketUrl: string;
     socketQuery: Record<string, string>
@@ -50,15 +56,25 @@ export const ChatItem = (
     {
         id,
         content,
-        member,
+        
+        currentMember,
+        messageMember,
+
+        currentProfile,
+        directProfile,
+        
         timestamp, 
         fileUrl, deleted,
-        currentMember, isUpdated,
+        isUpdated,
         socketUrl, socketQuery
     }: ChatItemProps
 ) => {
     const [isEditing, setIsEditing] = useState(false);
     const {onOpen} = useModal();
+
+    const params = useParams();
+    const router = useRouter();
+
     let eventExists = false;
 
     const form = useForm<FormSchemaType>({
@@ -106,43 +122,51 @@ export const ChatItem = (
     const isPdf = fileType === "pdf" && fileUrl;
     const isImage = !isPdf && fileUrl
 
-    const isAdmin = currentMember.role === MemberRole.ADMIN;
-    const isModerator = currentMember.role === MemberRole.MODERATOR;
-    const isOwner = member.id === currentMember.id;
+    const chatProfile = messageMember?.profile ?? directProfile;
+    if(!chatProfile)
+        return;
+
+    let isAdmin, isModerator;
+    if(currentMember){
+        isAdmin = currentMember.role === MemberRole.ADMIN;
+        isModerator = currentMember.role === MemberRole.MODERATOR;
+    }
+    const isOwner = messageMember ? (currentMember?.id === messageMember?.id) : (directProfile?.id === currentProfile?.id);
     const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
     const canEditMessage = !deleted && isOwner && !fileUrl;
     
-    const params = useParams();
-    const router = useRouter();
 
     const onMemberClick = () => {
-        if(member.id === currentMember.id){
+        if(isOwner){
             return;
         }
-        router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
+        redirectToDirect(chatProfile.id)
     }
 
     return (
         <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
+                    {/* msg */}
             <div className="group flex gap-x-2 items-start w-full">
-                <div onClick={onMemberClick} className="cursor-pointer hover:drop-shadow-md transition">
+                <div onClick={onMemberClick} className={cn("hover:drop-shadow-md transition", !isOwner && "cursor-pointer")}>
                     <UserAvatar
-                    src={member.profile.imageUrl}/>
+                    src={chatProfile.imageUrl}/>
                 </div>
                 <div className="flex flex-col w-full">
+                    {/* name of the user role icon and time stamp of the msg */}
                     <div className="flex items-center gap-x-2">
                         <div className="flex items-center">
                             <p onClick={onMemberClick} className="font-semibold text-sm hover:underline cursor-pointer">
-                                {member.profile.name}
+                                {chatProfile.name}
                             </p>
-                            <ActionTooltip label={member.role}>
-                                {roleIconMap[member.role]}
-                            </ActionTooltip>
+                            {messageMember && <ActionTooltip label={messageMember.role}>
+                                {roleIconMap[messageMember.role]}
+                            </ActionTooltip>}
                         </div>
                         <span className="text-xs text-zinc-500 dark:text-zinc-400">
                             {timestamp}
                         </span>
                     </div>
+                    {/* image */}
                     {isImage && (
                         <a
                         href={fileUrl}
@@ -158,6 +182,7 @@ export const ChatItem = (
                         />
                         </a>
                     )}
+                    {/* pdf file */}
                     {isPdf && (
                         <a href={fileUrl} target="_blank" rel="noopener noreferrer" className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
                             <FileIcon className="h-10 2-10 fill-indigo-200 stroke-indigo-400"/>
@@ -166,6 +191,7 @@ export const ChatItem = (
                             </span>  
                         </a>
                     )}
+                    {/* text content */}
                     {!fileUrl && !isEditing && (
                         <p className={cn("text-sm text-zinc-600 dark:text-zinc-300", deleted && "italic text-zinc-300 dark:text-zinc-400 text-xs mt-1")}>
                             {content}
@@ -176,6 +202,7 @@ export const ChatItem = (
                             )}
                         </p>
                     )}
+                    {/* editing form */}
                     {!fileUrl && isEditing && (
                         <Form {...form}>
                             <form className="flex items-center w-full gap-x-2 pt-2" onSubmit={form.handleSubmit(onSubmit)}>
@@ -208,6 +235,7 @@ export const ChatItem = (
                     )}
                 </div>
             </div>
+            {/* msg actions */}
             {canDeleteMessage && (
                 <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm">
                     {canEditMessage && (

@@ -4,13 +4,13 @@ import ChatInput from "@/components/chat/chat-input";
 import ChatMessages from "@/components/chat/chat-messages";
 import { MediaRoom } from "@/components/media-room";
 import { Chat, useCurrentChat } from "@/hooks/use-current-chat-store";
-import { ChannelType } from "@prisma/client";
+import { ChannelType, Profile } from "@prisma/client";
 import { useEffect } from "react";
 
-type ParamsKey = "channelId" | "conversationId"
+type ParamsKey = "channelId" | "directId"
 
 interface ChatPageProps {
-    type: "conversation" | "channel";
+    type: "direct" | "channel";
     chatProps: {
         chatId: string;
         apiUrl: string;
@@ -19,7 +19,8 @@ interface ChatPageProps {
         paramKey: ParamsKey;
         paramValue: string;
     };
-    member: any;
+    member?: any;
+    currentProfile?: Profile;
     channelType: ChannelType;
     name: string;
     chat: Chat
@@ -29,6 +30,7 @@ const ChatPage = ({
     type,
     chatProps,
     member,
+    currentProfile,
     channelType,
     name,
     chat
@@ -49,6 +51,7 @@ const ChatPage = ({
                 <>
                     <ChatMessages
                         member={member}
+                        currentProfile={currentProfile}
                         name={name}
                         chatId={chatProps.chatId}
                         type={type}
@@ -61,6 +64,7 @@ const ChatPage = ({
                     <ChatInput
                         name={name}
                         type={type}
+                        
                         apiUrl={chatProps.socketUrl}
                         query={chatProps.socketQuery}
                     />

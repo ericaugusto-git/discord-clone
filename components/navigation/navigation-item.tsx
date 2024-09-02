@@ -7,6 +7,7 @@ import { useParams , useRouter} from "next/navigation";
 import { currentProfile } from "@/lib/current-profile";
 import UserAvatar from "../user-avatar";
 import BackgroundImage from "../ui/background-image";
+import { useCurrentChat } from "@/hooks/use-current-chat-store";
 
 type NavigationItemProps = {
     id?: string,
@@ -19,6 +20,7 @@ const NavigationItem = (
 ) => {
     const params = useParams()
     const router = useRouter();
+    const {setCurrentChat} = useCurrentChat();
 
     const changeChannel = () => {
         if(id)
@@ -26,6 +28,7 @@ const NavigationItem = (
         else{
             router.push(`/directs`)
         }
+        setCurrentChat(null, null);
     }
 
     return ( 

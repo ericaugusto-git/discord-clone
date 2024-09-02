@@ -16,8 +16,8 @@ export async function GET(req: Request){
         const {searchParams} = new URL(req.url);
 
         const cursor = searchParams.get("cursor")
-        const conversationId = searchParams.get("conversationId")
-        if(!conversationId){
+        const directId = searchParams.get("directId")
+        if(!directId){
             throw new NextResponse("Conversation ID missing", {status: 401});
         }
 
@@ -31,14 +31,10 @@ export async function GET(req: Request){
                     id: cursor
                 },
                 where: {
-                    conversationId
+                    directId
                 },
                 include: {
-                    member: {
-                        include: {
-                            profile: true
-                        }
-                    }
+                    profile: true
                 },
                 orderBy: {
                     createdAt: "desc"
@@ -48,14 +44,10 @@ export async function GET(req: Request){
             messages = await db.directMessage.findMany({
                 take: MESSAGES_BATCH,
                 where: {
-                    conversationId
+                    directId
                 },
                 include: {
-                    member: {
-                        include: {
-                            profile: true
-                        }
-                    }
+                    profile: true
                 },
                 orderBy: {
                     createdAt: "desc"

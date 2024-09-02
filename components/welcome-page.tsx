@@ -1,8 +1,13 @@
+"use client"
+
 import Image from "next/image";
-import BackgroundImage from "./ui/background-image";
+import { usePathname } from "next/navigation";
 
 export default function WelcomePage (){
-    return <div className="bg-chat-grey w-full h-full rounded-r-bento-item-radius flex justify-center items-center flex-col gap-3">
+    const path = usePathname();
+    if(path?.includes('direct/'))
+        return;
+    return <div className="w-full h-full flex justify-center items-center flex-col gap-3">
             <Image src="/welcome.png" className="saturate-0" width="168" height="114" alt="welcome"/>
         <div className="text-center text-[#b4b4b4] text-sm">
             <p className="text-white">Hello there! 👋</p>

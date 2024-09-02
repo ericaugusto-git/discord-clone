@@ -1,9 +1,9 @@
-import { Direct, Profile } from "@prisma/client";
-import BackgroundImage from "../ui/background-image";
-import { UserButton } from "@clerk/nextjs";
+"use client"
+import { DirectWithProfile } from "@/lib/direct";
+import { Profile } from "@prisma/client";
 import CurrentUser from "../current-user";
 import DirectUser from "./direct-user";
-import { DirectWithProfile } from "@/lib/direct";
+import { useParams } from "next/navigation";
 
 const DirectsSidebar = ({
   profile,
@@ -12,6 +12,8 @@ const DirectsSidebar = ({
   profile: Profile;
   directs: DirectWithProfile[] | null;
 }) => {
+  const params = useParams();
+  console.log(params)
   return (
     <div
       className="flex gap-[30px] flex-col h-full text-primary p-[15px] 
@@ -25,10 +27,12 @@ const DirectsSidebar = ({
         className="bg-[#212121] bg-no-repeat bg-[8px] rounded-full p-1 pl-9 focus-visible:outline-none"
         placeholder="Search..."
       />
-      {directs?.map((direct) => {
-        const otherGuy = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne; 
-        return <DirectUser key={direct.id} profile={otherGuy} />;
-      })}
+      <div className="flex flex-col gap-2 -mx-4">
+        {directs?.map((direct) => {
+          const otherGuy = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne; 
+          return <DirectUser key={direct.id} profile={otherGuy} active={params?.profileId == otherGuy.id}/>;
+        })}
+      </div>
       <CurrentUser className="-m-[15px] " profile={profile} />
     </div>
   );

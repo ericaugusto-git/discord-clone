@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
 
         const profile = await currentProfilePages(req);
 
-        const { directMessageId, conversationId } = req.query;
+        const { directMessageId, directId } = req.query;
         const {content} = req.body;
 
         if(!profile){
@@ -21,64 +21,48 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         if(!directMessageId){
             return res.status(401).json({error: "Direct Message ID missing"})
         }
-        if(!conversationId){
-            return res.status(401).json({error:  "Conversation ID missing"})
+        if(!directId){
+            return res.status(401).json({error:  "Direct ID missing"})
         }
         if(req.method === "PATCH" && !content){
             return res.status(401).json({error:  "Content missing"})
         }
 
-        const conversation = await db.conversation.findFirst({
+        const direct = await db.direct.findFirst({
             where: {
-                id: conversationId as string,
+                id: directId as string,
                 OR: [
                     {
-                        memberOne: {
-                            profileId: profile.id
-                        }
+                            profileOneId: profile.id
                     },
                     {
-                        memberTwo: {
-                            profileId: profile.id
-                        }
+                        profileTwoId: profile.id
                     }
                 ]
             },
             include: {
-                memberOne: {
-                    include: {
-                        profile: true
-                    }
-                },
-                memberTwo: {
-                    include: {
-                        profile: true
-                    }
-                }
+                profileOne: true,
+                profileTwo: true
             }
         })
 
         
-        if(!conversation){
-            return res.status(404).json({message: "Conversation not found"}); 
+        if(!direct){
+            return res.status(404).json({message: "Direct not found"}); 
         }
 
-        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo;
-        if(!member){
-            return res.status(404).json({message: "Member not found"}); 
+        const convoProfile = direct.profileOneId === profile.id ? direct.profileOne : direct.profileTwo;
+        if(!convoProfile){
+            return res.status(404).json({message: "convoProfile not found"}); 
         }
 
         let directMessage = await db.directMessage.findFirst({
             where: {
                 id: directMessageId as string,
-                conversationId: conversationId as string
+                directId: directId as string
             },
             include: {
-                member: {
-                    include: {
-                        profile: true
-                    }
-                }
+                profile: true
             }
         })
 
@@ -86,19 +70,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             return res.status(404).json({message: "Message not found"}); 
         }
 
-        const isMessageOwner = directMessage.memberId === member.id;
-        const isModOrAdmin = member.role === MemberRole.ADMIN || MemberRole.MODERATOR;
+        const isMessageOwner = directMessage.profileId === convoProfile.id;
+        if(!isMessageOwner){
+            return res.status(401).json({error: "Unauthorized! Not the message owner."})
+        }
         if(req.method === "DELETE"){
-            if(!isModOrAdmin && !isMessageOwner){
-                return res.status(401).json({error: "Unauthorized"})
-            }
                 let deleteMessage = "This message has been deleted";
-                deleteMessage += isMessageOwner ? "." : isModOrAdmin ? " by a moderator of the server." : "."
                 console.log(deleteMessage)
                 directMessage = await db.directMessage.update({
                     where: {
                         id: directMessageId as string,
-                        conversationId: conversationId as string
+                        directId: directId as string
                     },
                     data: {
                         fileUrl: null,
@@ -106,38 +88,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
                         deleted: true
                     },
                     include: {
-                        member: {
-                            include: {
-                                profile: true
-                            }
-                        }
+                        profile: true
                     }
                 })
             
         }
         if(req.method === "PATCH"){
-            if(!isMessageOwner){
-                return res.status(401).json({error: "Unauthorized"})
-            }
             directMessage = await db.directMessage.update({
                     where: {
                         id: directMessageId as string,
-                        conversationId: conversationId as string
+                        directId: directId as string
                     },
                     data: {
                         content,
                     },
                     include: {
-                        member: {
-                            include: {
-                                profile: true
-                            }
-                        }
+                       profile: true
                     }
                 })
-            
         }
-        const updateKey = `chat:${conversationId}:messages:update`
+        const updateKey = `chat:${directId}:messages:update`
 
         res?.socket?.server?.io?.emit(updateKey, directMessage);
 
