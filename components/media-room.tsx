@@ -5,6 +5,8 @@ import "@livekit/components-styles";
 import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { redirect, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface MediaRoomProps {
     chatId: string;
@@ -19,7 +21,13 @@ export const MediaRoom = ({
 }: MediaRoomProps) => {
     const { user } = useUser();
     const [token, setToken] = useState();
-
+    const pathName = usePathname();
+    const router = useRouter();
+    // this is not very good but it's fine for now
+    const onDisconnect = () => {
+        const chatRoot = pathName?.includes('direct') ? pathName : pathName?.split('/channels/')?.[0] as string
+        router.push(chatRoot);
+    }
     useEffect(() => {
         const name = `${user?.firstName ?? "Guest"} ${user?.lastName ?? "User"}`;
 
@@ -50,6 +58,7 @@ export const MediaRoom = ({
         connect={true}
         video={video}
         audio={audio}
+        onDisconnected={onDisconnect}
         >
             <VideoConference></VideoConference>
         </LiveKitRoom>

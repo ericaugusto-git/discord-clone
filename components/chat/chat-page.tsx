@@ -46,6 +46,7 @@ const ChatPage = ({
                     chatId={chatProps.chatId}
                     video={channelType === ChannelType.VIDEO}
                     audio={true}
+                    
                 />
             ) : (
                 <>

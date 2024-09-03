@@ -67,7 +67,7 @@ module.exports = withUt({
           md: "calc(var(--radius) - 2px)",
           sm: "calc(var(--radius) - 4px)",
           'bento-wrapper-radius': '40px',
-          'bento-item-radius': '25px'
+          'bento-item-radius': '27px'
         },
         gap: {
           'bento-gap': '15px'
@@ -88,5 +88,5 @@ module.exports = withUt({
         },
       },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar')],
 });

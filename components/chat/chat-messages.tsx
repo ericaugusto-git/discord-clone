@@ -9,6 +9,7 @@ import ChatItem from "./chat-item";
 import {format} from "date-fns"; 
 import { useChatSocket } from "@/hooks/use-chat-socket";
 import { useChatScroll } from "@/hooks/use-chat-scroll";
+import styles from './chat.module.css';
 
 interface ChatMessagesProps {
     name:string;
@@ -80,7 +81,7 @@ const ChatMessages = ({
     }
 
     return ( 
-        <div ref={chatRef} className="h-full flex flex-col py-4 overflow-y-auto">
+        <div  ref={chatRef} className={"h-full flex flex-col py-4 overflow-y-auto scrollbar scrollbar-track-transparent scrollbar-thumb-accent"}>
             {!hasNextPage && (
                 <>
             <div className="flex-1"/>
@@ -101,7 +102,6 @@ const ChatMessages = ({
                     }
                 </div>
             )}
-
             <div className="flex flex-col-reverse mt-auto">
                 {data?.pages?.map((group, i) => (
                     <Fragment key={i}>

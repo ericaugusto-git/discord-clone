@@ -16,11 +16,11 @@ export async function initialProfile (){
     if(dbUser){
         return dbUser;
     }
-
+    console.log(user);
     const newUser = await db.profile.create({
         data: {
             userId: user.id,
-            name: `${user.firstName ?? 'Nameless'} ${user.lastName ?? ''}`,
+            name: `${user.firstName ?? user.username ?? 'Nameless'} ${user.lastName ?? ''}`,
             imageUrl: user.imageUrl,
             email: user.emailAddresses[0].emailAddress,
 
