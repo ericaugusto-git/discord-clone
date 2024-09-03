@@ -40,7 +40,7 @@ export const useChatScroll = (
     useEffect(() => {
         const bottomDiv = bottomRef?.current;
         const topDiv = chatRef.current;
-        console.log("use effect")
+        
         const shouldAutoScroll = () => {
             if(!hasInitialized && bottomDiv){
                 setHasInitialized(true);
@@ -55,7 +55,7 @@ export const useChatScroll = (
             return distanceFromBottom <= 100;
         }
         const shouldScroll = shouldAutoScroll();
-        console.log(shouldScroll)
+        
         if(shouldScroll){
             setTimeout(() => {
             bottomRef.current?.scrollIntoView({

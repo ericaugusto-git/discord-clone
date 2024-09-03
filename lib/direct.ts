@@ -25,6 +25,9 @@ export const getDirects = async (profileId: string): Promise<DirectWithProfile[]
 }
 
 export const getOrCreateDirect = async (profileOneId:string, profileTwoId: string) => {
+    if(profileOneId === profileTwoId){
+        return null;
+    }
         let direct = await findDirect(profileOneId, profileTwoId) || await findDirect(profileTwoId, profileOneId);
         if(!direct)
             direct = await createNewDirect(profileOneId, profileTwoId);

@@ -25,7 +25,7 @@ const Sidebar = async () => {
             }
         }
     })
-    console.log(servers)
+    
     return ( 
     <div className="flex flex-col items-center  h-full 
     text-pretty w-full rounded-bento-item-radius

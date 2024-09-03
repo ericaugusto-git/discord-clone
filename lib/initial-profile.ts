@@ -16,7 +16,7 @@ export async function initialProfile (){
     if(dbUser){
         return dbUser;
     }
-    console.log(user);
+    
     const newUser = await db.profile.create({
         data: {
             userId: user.id,

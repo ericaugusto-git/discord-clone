@@ -87,28 +87,9 @@ body,
   background-repeat: no-repeat;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: rgba(255,0,0,0.8); 
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-
-.scrollbar::-moz-scrollbar-button:decrement,
-.scrollbar::-moz-scrollbar-button:increment,
-.scrollbar::-webkit-scrollbar-button:decrement,
-.scrollbar::-webkit-scrollbar-button:increment {
-  width: 0px !important;
-}
-
-.scrollbar::-webkit-scrollbar-button {
-  display: none !important 
+.svgMask {
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: cover;
 }

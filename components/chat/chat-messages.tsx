@@ -57,7 +57,7 @@ const ChatMessages = ({
     const chatRef = useRef<ElementRef<"div">>(null);
     const bottomRef = useRef<ElementRef<"div">>(null);    
     useChatScroll({chatRef, bottomRef, loadMore: fetchNextPage, shouldLoadMore: !isFetchingNextPage && !!hasNextPage, count: data?.pages?.[0]?.items?.length || 0})
-   console.log("data:", data)
+   
     if(status === "pending"){
         return (
             <div className="h-full flex flex-col flex-1 justify-center items-center">

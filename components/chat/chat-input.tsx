@@ -47,7 +47,7 @@ const ChatInput = (
                 url: apiUrl,
                 query: query
             })
-            console.log(url)
+            
             await axios.post(url, value);
             //TODO scroll to bottom
             form.reset();
@@ -55,7 +55,7 @@ const ChatInput = (
         }catch(error){
 
         }
-        console.log(value)
+        
     }
 
     return ( 

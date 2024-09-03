@@ -14,7 +14,7 @@ export default function DirectUser({profile, active}: {profile: Profile, active:
     return ( 
         <button
         onClick={onClick}
-        className={cn("group p-1 pl-4 flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1", 
+        className={cn("group p-1 px-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1", 
         active && "bg-zinc-700/10 dark:bg-zinc-700/50"
         )}
         >

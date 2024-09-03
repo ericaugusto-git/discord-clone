@@ -43,6 +43,9 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **💅 Brand new UI**
   - Aesthetically pleasing UI built with TailwindCSS and Figma [(click here to see the design)](https://www.figma.com/design/mW7pmuDuwELvesOq759VIC/Discourse?node-id=0-1&t=tAIdE2khFXYmdgcG-1).
 
+- **🌐 Internationalization (i18n)**
+  - Translations for both pt-BR and EN
+
 - **📱 Fully Responsive**
   - The new design is fully responsive with optimized mobile UI.
 

@@ -14,9 +14,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         console.log(req.body);
         const {directId} = req.query;
 
+        
         if(!profile){
             return res.status(401).json({error: "Unauthorized"})
         }
+
         if(!directId){
             return res.status(401).json({error: "Direct ID missing"})
         }

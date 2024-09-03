@@ -8,6 +8,7 @@ export type ModalType = "createServer" | "invite" | "editServer" |
 
 type ModalData = {
     server?: Server,
+    inviteLink?: string;
     channel?: Channel,
     channelType?: ChannelType,
     apiUrl?: string,

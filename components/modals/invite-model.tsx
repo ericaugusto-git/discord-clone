@@ -27,10 +27,10 @@ const InviteModal = () => {
     const [copied,setCopied] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     
-    const isModalOpen = isOpen && type == 'invite'
+    const isModalOpen = isOpen && type == 'invite';
 
     const {server} = data;
-    const inviteUrl = `${origin}/invite/${server?.inviteCode}`
+    const inviteUrl = `${origin}${data.inviteLink}`
 
     const onCopy = () => {
         navigator.clipboard.writeText(inviteUrl);
@@ -45,7 +45,7 @@ const InviteModal = () => {
             setIsLoading(true)
             const response = await axios.patch(`/api/servers/${server?.id}/invite-code`);
             setIsLoading(false)
-            onOpen("invite", {server: response.data})
+            onOpen("invite", {inviteLink: `/invite/${server?.inviteCode}`})
         }catch(error){
             setIsLoading(false)
             console.log(error)
@@ -76,7 +76,7 @@ const InviteModal = () => {
                         Server invite link
                     </Label>
                     <div className="flex items-center mt-2 gap-x-2">
-                        <Input disabled={isLoading} value={inviteUrl} className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"/>
+                        <Input disabled={isLoading} readOnly value={inviteUrl} className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"/>
                         <Button disabled={isLoading} size="icon" onClick={onCopy} className={copied ? "bg-emerald-300 hover:bg-emerald-300" : ""}>
                             {copied ? <Check className="w-4 h-4"/> : <Copy className="w-4 h-4"/> }
                         </Button>
