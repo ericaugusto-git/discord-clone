@@ -32,25 +32,24 @@ export const SocketProvider = ({
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_SITE_URL!);
-    const socketInstance = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL!, {
-      path: "/api/socket/io",
-      addTrailingSlash: false,
-      transports: ["websocket"]
+    // const socketInstance =  io("http://localhost:3000", {
+    //   path: "/api/socket/io",
+    //   transports: ["websocket"]
+    // });
+    
+    const socketInstance = new (ClientIO as any)("http://localhost:3000", {
+      path: "/api/socket/io"
     });
+
 
     socketInstance.on("error", (err: any) => {
       console.log("error: ", err)
     })
 
-    socketInstance.on("connect_error", (err: { message: any; description: any; context: any; }) => {
+    socketInstance.on("connect_error", (err: any) => {
       // the reason of the error, for example "xhr poll error"
       console.log(err);
-    
-      // some additional description, for example the status code of the initial HTTP response
-      console.log(err.description);
-    
-      // some additional context, for example the XMLHttpRequest object
-      console.log(err.context);
+
     });
 
     socketInstance.on("connect", () => {
@@ -61,7 +60,7 @@ export const SocketProvider = ({
       setIsConnected(false);
     });
 
-    setSocket(socketInstance);
+    setSocket(socketInstance as any);
 
     return () => {
       socketInstance.disconnect();
