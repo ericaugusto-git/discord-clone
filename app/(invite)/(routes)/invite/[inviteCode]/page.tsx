@@ -15,7 +15,7 @@ const InviteCodePage = async (
 ) => {
     const profile = await initialProfile();
     if(!profile){
-        redirect("http://localhost:3000/sign-in"); // Use full URL or relative path
+        redirect("/sign-in"); 
         return;
     }
 

@@ -13,7 +13,7 @@ export const useChatQuery = (
     {queryKey, apiUrl, paramKey, paramValue}: ChatQueryProps
 )=> {
     const { isConnected } = useSocket();
-    
+    // pageParam = message ID to be used as cursor
     const fetchMessages = async ({pageParam = undefined}) => {
         const url = qs.stringifyUrl({
             url: apiUrl,
@@ -36,9 +36,9 @@ export const useChatQuery = (
         queryKey: [queryKey],
         queryFn: fetchMessages,
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
+        // starts polling if socket.io is off
         refetchInterval: isConnected ? false : 1000,
         initialPageParam: undefined
-        
     })
   return {
     data,

@@ -6,6 +6,7 @@ import UserAvatar from "../user-avatar";
 import SocketIndicator from "../socket-indicator";
 import ChatVideoButton from "./chat-video-button";
 import { useCurrentChat } from "@/hooks/use-current-chat-store";
+import { useSocket } from "@/components/providers/socket-provider";
 
 interface ChatHeaderProps {
     serverId: string;

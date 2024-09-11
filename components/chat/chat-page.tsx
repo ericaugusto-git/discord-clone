@@ -6,6 +6,8 @@ import { MediaRoom } from "@/components/media-room";
 import { Chat, useCurrentChat } from "@/hooks/use-current-chat-store";
 import { ChannelType, Profile } from "@prisma/client";
 import { useEffect } from "react";
+import { useSocket } from "@/components/providers/socket-provider";
+import { useSearchParams } from "next/navigation";
 
 type ParamsKey = "channelId" | "directId"
 
@@ -36,9 +38,25 @@ const ChatPage = ({
     chat
 }: ChatPageProps) => {
     const {setCurrentChat} = useCurrentChat();
+    const searchParams = useSearchParams();
+    // const { socket } = useSocket();
+    // useEffect(() => {
+    //     if(socket){
+    //         socket.on("connect", () => {
+    //             console.log("emitting register")
+    //             socket.emit("register_profile", currentProfile);
+    //         })
+    //         // Register the user's directId with the server
+                
+    //         return () => {
+    //           socket.disconnect();
+    //         };
+    //     }
+    //   }, [currentProfile, socket]);
     useEffect(() => {
         setCurrentChat(type,chat);
-    },[chat, setCurrentChat, type])
+    },[chat, setCurrentChat, type]);
+
     return (
         <div className="flex gap-bento-gap flex-col h-full">
             {channelType !== ChannelType.TEXT ? (

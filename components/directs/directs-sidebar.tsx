@@ -4,6 +4,8 @@ import { Profile } from "@prisma/client";
 import CurrentUser from "../current-user";
 import DirectUser from "./direct-user";
 import { useParams } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
+import { Plus } from "lucide-react";
 
 const DirectsSidebar = ({
   profile,
@@ -13,6 +15,7 @@ const DirectsSidebar = ({
   directs: DirectWithProfile[] | null;
 }) => {
   const params = useParams();
+  const {onOpen} = useModal();
   
   return (
     <div
@@ -28,12 +31,19 @@ const DirectsSidebar = ({
         placeholder="Search..."
       />
       <div className="flex flex-col gap-2 ">
+      <div className="flex items-center justify-between">
+        <p className="text-zinc-500 text-xs uppercase">Directs messages</p>
+        <button onClick={() => onOpen("invite", {inviteLink: `/directs/direct/${profile.id}`})} className="text-zinc-500 hover:text-zinc-600
+                          dark:text-zinc-400 dark:hover:text-zinc-300 transition">
+                              <Plus className="size-4"/>
+        </button>
+      </div>
         {directs?.map((direct) => {
           const otherGuy = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne; 
           return <DirectUser key={direct.id} profile={otherGuy} active={params?.profileId == otherGuy.id}/>;
         })}
       </div>
-      <CurrentUser className="-m-[15px] " profile={profile} />
+      <CurrentUser className="-m-[15px]" profile={profile} />
     </div>
   );
 };

@@ -13,7 +13,7 @@ import { useModal } from "@/hooks/use-modal-store";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Check, Copy, RefreshCw } from "lucide-react";
+import { Check, Copy, MessageCircle, MessageSquare, MessageSquareMore, MessageSquareMoreIcon, MessageSquareShareIcon, RefreshCw, Smile } from "lucide-react";
 import { useOrigin } from "@/hooks/use-origin";
 import { useState } from "react";
 import axios from "axios";
@@ -66,14 +66,14 @@ const InviteModal = () => {
             <DialogContent className="bg-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
-                        Invite friends
+                       Invite friends 
                     </DialogTitle>
                 </DialogHeader>
-                <div className="p-6">
+                <div className="p-4 pt-1">
                     <Label
                     className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70"
                     >
-                        Server invite link
+                        Invite link
                     </Label>
                     <div className="flex items-center mt-2 gap-x-2">
                         <Input disabled={isLoading} readOnly value={inviteUrl} className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"/>
@@ -81,10 +81,10 @@ const InviteModal = () => {
                             {copied ? <Check className="w-4 h-4"/> : <Copy className="w-4 h-4"/> }
                         </Button>
                     </div>
-                        <Button disabled={isLoading} onClick={onNew} variant='link' size="sm" className="text-xs text-zinc-500 mt-4">
+                       {server && <Button disabled={isLoading} onClick={onNew} variant='link' size="sm" className="text-xs text-zinc-500 mt-4">
                             Generate a new link
                             <RefreshCw className="w-4 h-4 ml-2"/>
-                        </Button>
+                        </Button>}
                 </div>
             </DialogContent>
         </Dialog>

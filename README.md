@@ -5,7 +5,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 ### 🚀 Main Features
 
 - **💬 Messaging**
-  - Real-time messaging using [Socket.IO](https://socket.io) WebSocket and native polling fallback.
+  - Real-time messaging using [Socket.IO](https://socket.io) WebSocket and a [@tanstack/query](https://tanstack.com/query/latest) polling fallback.
 
 - **🔊 Video and Audio call**
   - Realtime video and audio call with [LiveKit](https://livekit.io)
@@ -14,7 +14,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
   - Send attachments as messages using [UploadThing](https://uploadthing.com).
 
 - **🗄️ ORM & Database**
-  - ORM setup using Prisma with MySQL. 
+  - ORM setup using [Prisma](https://www.prisma.io) with MySQL. 
 
 - **🔐 Authentication**
   - Secure authentication implemented with [Clerk](https://clerk.com).
@@ -22,11 +22,8 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **📜 Infinite Scrolling**
   - Load messages in batches of 15 using [@tanstack/query](https://tanstack.com/query/latest) for infinite scrolling.
 
-- **🌗 Light / Dark Mode**
-  - Support for both light and dark themes with [TailwindCSS](https://tailwindcss.com)
-
-- **🏠 Server Creation & Customization**
-  - Create and customize servers.
+- **🏠 Servers**
+  - Create and customize servers where you can create audio, text and video channels.
 
 - **✏️ Message Management**
   - Delete and edit messages in real time.
@@ -34,38 +31,33 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **🛠️ Member Management**
   - Manage members with options to kick, change roles (Guest/Moderator), and more.
 
-- **🔗 Invitation System**
-  - Generate unique invite links and manage server invitations efficiently.
 
 
-### ✨ Changes and new Features after the course
+### ✨ Changes and new Features
 
 - **💅 Brand new UI**
   - Aesthetically pleasing UI built with TailwindCSS and Figma [(click here to see the design)](https://www.figma.com/design/mW7pmuDuwELvesOq759VIC/Discourse?node-id=0-1&t=tAIdE2khFXYmdgcG-1).
 
-- **🌐 Internationalization (i18n)**
-  - Translations for both pt-BR and EN
+- **🌗 Light / Dark Mode**
+  - Support for both light and dark themes with [TailwindCSS](https://tailwindcss.com)
 
 - **📱 Fully Responsive**
   - The new design is fully responsive with optimized mobile UI.
+
+- **🌐 Internationalization (i18n)**
+  - Translations for both pt-BR and EN
 
 - **🗄️ New MySql server**
   - Because of the end of Planetscale's hobby free "forever" plan, I'm now hosting the MySql database on [Aiven](https://aiven.io) 
 
 - **👋 Welcome Page**
-  - Initial page with an invitation to join a general server or create a new one.
-
-- **🖼️ Profile Personalization**
-  - Users can now personalize their profiles with a "Status" and an "About Me" section to express themselves.
-
-- **🤝 Friend System**
-  - Added the ability to add and manage friends.
-
-- **📝 Channel Descriptions**
-  - Channels can now have custom descriptions, providing more context and information about each channels purpose.
+  - Initial page with CTA to invite friends to chat or create a server.
 
 - **✉️ 1:1 Directs**
-  - Direct messaging and 1:1 video calls.
+  - Direct messaging and 1:1 video and audio calls.
+
+- **🔗 Invitation System**
+  - Generate unique invite links for servers and direct messages.
 
 
 

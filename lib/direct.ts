@@ -25,6 +25,7 @@ export const getDirects = async (profileId: string): Promise<DirectWithProfile[]
 }
 
 export const getOrCreateDirect = async (profileOneId:string, profileTwoId: string) => {
+    //can't chat to yourself
     if(profileOneId === profileTwoId){
         return null;
     }

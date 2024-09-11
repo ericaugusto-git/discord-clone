@@ -27,10 +27,12 @@ export const useChatSocket = ({
         socket.on(updateKey, (message: MessageWithMemberWithProfile) => {
             queryClient.setQueryData([queryKey], (oldData: any) => {
                 //TODO understand this if
+                //DONE Checking if old pages exists, if not returns current cache
                 if(!oldData || !oldData.pages || oldData.pages.length === 0){
                     return oldData;
                 }
-                    const newData = oldData.pages.map((page: any) => {
+                // add updated message to the messages array
+                const newData = oldData.pages.map((page: any) => {
                         return {...page, items: page.items.map((item: MessageWithMemberWithProfile) => {
                             if(item.id === message.id){
                                 return message;
@@ -41,6 +43,8 @@ export const useChatSocket = ({
                     return {...oldData, pages: newData};
             })
         })
+
+        // listen to new messages
         socket.on(addKey, (message: MessageWithMemberWithProfile) => {
             queryClient.setQueryData([queryKey], (oldData:any) => {
                 if(!oldData || !oldData.pages || oldData.pages.length === 0){
@@ -54,6 +58,7 @@ export const useChatSocket = ({
                     //TODO understand why add this
                     ...newData[0],
                     //and not just this
+                    // DONE Good practice to create a new object to trigger re-render + this adds the new message to the array
                     items: [
                         message,
                         ...newData[0].items

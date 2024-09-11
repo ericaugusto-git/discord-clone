@@ -1,5 +1,6 @@
 import ChatHeader from "@/components/chat/chat-header";
 import DirectsSidebar from "@/components/directs/directs-sidebar";
+import { useSocket } from "@/components/providers/socket-provider";
 import WelcomePage from "@/components/welcome-page";
 import { currentProfile } from "@/lib/current-profile";
 import { getDirects } from "@/lib/direct";

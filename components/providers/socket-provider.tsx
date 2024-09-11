@@ -31,9 +31,26 @@ export const SocketProvider = ({
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_SITE_URL!);
     const socketInstance = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL!, {
       path: "/api/socket/io",
       addTrailingSlash: false,
+      transports: ["websocket"]
+    });
+
+    socketInstance.on("error", (err: any) => {
+      console.log("error: ", err)
+    })
+
+    socketInstance.on("connect_error", (err: { message: any; description: any; context: any; }) => {
+      // the reason of the error, for example "xhr poll error"
+      console.log(err);
+    
+      // some additional description, for example the status code of the initial HTTP response
+      console.log(err.description);
+    
+      // some additional context, for example the XMLHttpRequest object
+      console.log(err.context);
     });
 
     socketInstance.on("connect", () => {

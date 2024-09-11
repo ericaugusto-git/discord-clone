@@ -23,7 +23,7 @@ const ServerHeader = (
     // TODO change icon flex arrow down to X on open
     return ( 
         <DropdownMenu>
-            <DropdownMenuTrigger className='focus:outline-none' asChild>
+            <DropdownMenuTrigger className='focus:outline-none rounded-tl-bento-item-radius' asChild>
                 <button className='w-full font-semibold px-3 flex 
                 items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2
                 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition'>
@@ -38,7 +38,7 @@ const ServerHeader = (
             >
                 {isModerator && (
                     <DropdownMenuItem
-                    onClick={() => onOpen("invite", {inviteLink: `/invite/${server?.inviteCode}`})}
+                    onClick={() => onOpen("invite", {inviteLink: `/invite/${server?.inviteCode}`, server: server})}
                     className='text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer'
                     >
                         Invite people

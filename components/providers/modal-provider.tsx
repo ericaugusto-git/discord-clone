@@ -12,6 +12,7 @@ import DeleteChannelModal from "../modals/delete-channel-modal";
 import EditChannelModal from "../modals/edit-channel-modal";
 import MessageFileModal from "../modals/message-file-modal";
 import DeleteMessageModal from "../modals/delete-message-modal";
+import IncomingCall from "../modals/incoming-call";
 
 const ModalProvider = () => {
 const [isMounted, setIsMounted] = useState(false);
@@ -27,6 +28,7 @@ useEffect(() => {
         <>
         <CreateServerModal/>
         <InviteModal/>
+        <IncomingCall/>
         <EditServerModal/>
         <MembersModal/>
         <CreateChannelModal/>

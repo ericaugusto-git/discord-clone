@@ -1,10 +1,6 @@
-import ChatHeader from "@/components/chat/chat-header";
-import ChatInput from "@/components/chat/chat-input";
-import ChatMessages from "@/components/chat/chat-messages";
 import ChatPage from "@/components/chat/chat-page";
-import { MediaRoom } from "@/components/media-room";
+import { useSocket } from "@/components/providers/socket-provider";
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
 import { getOrCreateDirect } from "@/lib/direct";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { ChannelType } from "@prisma/client";
@@ -16,12 +12,13 @@ interface MemberIdPageProps {
     },
     searchParams: {
         video?: boolean,
-        call?: boolean
+        audio?: boolean
     }
 }
 
 const Direct = async ({params, searchParams}:MemberIdPageProps) => {
     const profile = await currentProfile();
+
     if(!profile)
         return redirectToSignIn();
 
@@ -48,7 +45,7 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
                     paramValue: direct.id,
                 }}
                 // member={currentMember}
-                channelType={searchParams.video ? ChannelType.VIDEO :  ChannelType.TEXT}
+                channelType={searchParams.video ? ChannelType.VIDEO : searchParams.audio ? ChannelType.AUDIO :  ChannelType.TEXT}
                 chat={{otherMember}}
                 currentProfile={profile}
                 name={otherMember.name}
