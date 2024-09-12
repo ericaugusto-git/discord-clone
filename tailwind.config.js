@@ -61,6 +61,7 @@ module.exports = withUt({
             DEFAULT: "hsl(var(--card))",
             foreground: "hsl(var(--card-foreground))",
           },
+          "unfocus-grey": "#b4b4b4"
         },
         borderRadius: {
           lg: "var(--radius)",

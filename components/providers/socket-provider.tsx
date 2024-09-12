@@ -37,7 +37,7 @@ export const SocketProvider = ({
     //   transports: ["websocket"]
     // });
     
-    const socketInstance = new (ClientIO as any)("http://localhost:3000", {
+    const socketInstance = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL, {
       path: "/api/socket/io"
     });
 

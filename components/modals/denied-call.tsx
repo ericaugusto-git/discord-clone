@@ -6,34 +6,26 @@ import queryString from "query-string";
 import { useSocket } from "../providers/socket-provider";
 import { DialogHeader } from "../ui/dialog";
 import UserAvatar from "../user-avatar";
+import Image from "next/image";
 
-export default function IncomingCall() {
+export default function DeniedCall() {
   const pathname = usePathname();
   const router = useRouter();
   const {isOpen, type, onClose, data} = useModal();
-  const isModalOpen = isOpen && type == 'incomingCall'
-  const {caller, callType} = data;
-  const {socket} = useSocket();
-  const accept = () => {
-    console.log(callType)
+  const isModalOpen = isOpen && type == 'deniedCall'
+  const {profile} = data;
+  const exitCall = () => {
     const url = queryString.stringifyUrl(
       {
-        url: pathname || "",
-        query: {
-          [callType!]: true
-        },
+        url: pathname!,
+        query: {},
       },
       { skipNull: true }
     );
-    console.log(url)
     onClose();
     router.push(url);
   }
 
-  const deny = () => {
-    socket.emit("call_denied", caller);
-    onClose();
-  }
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
     <DialogContent className="bg-direct-sidebar-accent text-white p-0  overflow-hidden w-fit">
@@ -43,14 +35,14 @@ export default function IncomingCall() {
             </DialogTitle> */}
         </DialogHeader>
         <div className="p-4 pt-1 flex items-center justify-center flex-col gap-2">
-        <UserAvatar src={caller?.imageUrl} className="md:size-16"/>
+        <UserAvatar src={profile?.imageUrl} className="md:size-16"/>
             <div className="flex flex-col items-center">
-              <span>{caller?.name}</span>
-              <span className="text-unfocus-grey font-thin leading-3"> Is calling you, well you accept? </span>
+              <span>{profile?.name}</span>
+              <span className="text-unfocus-grey font-thin leading-3"> Rejected your call, he hates you</span>
+            <Image className="my-6" src="/sadding.webp" width={128} height={128} alt="sad"/>
             </div>
             <div className="flex gap-4 mt-2">
-              <button onClick={deny} className="bg-[#F03A14] p-2 px-4 rounded flex gap-3 items-center hover:opacity-70 transition-opacity"><PhoneMissed/>decline</button>
-              <button onClick={accept} className="bg-[#00B94D] p-2 px-4 rounded flex gap-3 items-center hover:opacity-70 transition-opacity"><PhoneCall/>accept</button>
+              <button onClick={exitCall} className="bg-[#F03A14] p-2 px-4 rounded flex gap-3 items-center hover:opacity-70 transition-opacity"><PhoneMissed/>oh... guess i well exit the call then</button>
             </div>
             {/* <PhoneIncoming/> */}
         </div>

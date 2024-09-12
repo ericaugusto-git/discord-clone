@@ -5,11 +5,13 @@ import { useParams, usePathname, useRouter, useSearchParams } from "next/navigat
 import qs from "query-string";
 import ActionTooltip from "../action-tooltip";
 import { useSocket } from "@/components/providers/socket-provider";
+import { useCurrentProfile } from "@/components/providers/profile-provider";
 
 const ChatVideoButton = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { socket } = useSocket();
+  const {profile} = useCurrentProfile()
   const searchParams = useSearchParams();
   const params = useParams();
   const isVideo = searchParams?.get("video");
@@ -19,7 +21,7 @@ const ChatVideoButton = () => {
   const tooltipLabelPhone = isAudio ? "End audio call" : "Start audio call";
 
   const onClick = (video?: boolean) => {
-    socket.emit('incoming_call', {receiverId: params?.profileId })
+    socket.emit('incoming_call', {receiverId: params?.profileId, type: video ? "video" : "audio"})
     console.log(params)
     const url = qs.stringifyUrl(
       {

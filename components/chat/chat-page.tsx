@@ -8,6 +8,7 @@ import { ChannelType, Profile } from "@prisma/client";
 import { useEffect } from "react";
 import { useSocket } from "@/components/providers/socket-provider";
 import { useSearchParams } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
 
 type ParamsKey = "channelId" | "directId"
 
@@ -39,20 +40,25 @@ const ChatPage = ({
 }: ChatPageProps) => {
     const {setCurrentChat} = useCurrentChat();
     const searchParams = useSearchParams();
-    // const { socket } = useSocket();
-    // useEffect(() => {
-    //     if(socket){
-    //         socket.on("connect", () => {
-    //             console.log("emitting register")
-    //             socket.emit("register_profile", currentProfile);
-    //         })
-    //         // Register the user's directId with the server
-                
-    //         return () => {
-    //           socket.disconnect();
-    //         };
-    //     }
-    //   }, [currentProfile, socket]);
+    const { socket } = useSocket();
+    const {onOpen} = useModal(); 
+    useEffect(() => {
+        if(socket){
+            console.log("listening to incoming calls")
+            socket.on("incoming_call", (data: {caller: Profile, type: string}) => {
+                const {caller, type} = data;
+                console.log(data)
+                onOpen("incomingCall", {caller, callType: type})
+            });
+            socket.on("call_denied", ( receiverId: string) => {
+                console.log("call denied")
+                const direct = 'otherMember' in chat! ? chat : null;
+                console.log(direct);
+                onOpen("deniedCall", {profile: direct?.otherMember})
+            })
+            // Register the user's directId with the server
+        }
+      }, [socket]);
     useEffect(() => {
         setCurrentChat(type,chat);
     },[chat, setCurrentChat, type]);
