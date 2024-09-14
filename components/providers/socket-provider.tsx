@@ -1,5 +1,7 @@
 "use client";
 
+import { useModal } from "@/hooks/use-modal-store";
+import { Profile } from "@prisma/client";
 import { 
   createContext,
   useContext,
@@ -29,6 +31,7 @@ export const SocketProvider = ({
 }) => {
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  const {onOpen} = useModal(); 
 
   useEffect(() => {
     console.log(process.env.NEXT_PUBLIC_SITE_URL!);
@@ -59,6 +62,15 @@ export const SocketProvider = ({
     socketInstance.on("disconnect", () => {
       setIsConnected(false);
     });
+
+      console.log("listening to incoming calls")
+      socketInstance.on("incoming_call", (data: {caller: Profile, type: string}) => {
+          const {caller, type} = data;
+          onOpen("incomingCall", {caller, callType: type})
+      });
+      socketInstance.on("call_denied", ( profile: Profile) => {
+          onOpen("deniedCall", {profile})
+      })
 
     setSocket(socketInstance as any);
 

@@ -41,23 +41,8 @@ const ChatPage = ({
     const {setCurrentChat} = useCurrentChat();
     const searchParams = useSearchParams();
     const { socket } = useSocket();
-    const {onOpen} = useModal(); 
     useEffect(() => {
-        if(socket){
-            console.log("listening to incoming calls")
-            socket.on("incoming_call", (data: {caller: Profile, type: string}) => {
-                const {caller, type} = data;
-                console.log(data)
-                onOpen("incomingCall", {caller, callType: type})
-            });
-            socket.on("call_denied", ( receiverId: string) => {
-                console.log("call denied")
-                const direct = 'otherMember' in chat! ? chat : null;
-                console.log(direct);
-                onOpen("deniedCall", {profile: direct?.otherMember})
-            })
-            // Register the user's directId with the server
-        }
+
       }, [socket]);
     useEffect(() => {
         setCurrentChat(type,chat);

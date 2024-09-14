@@ -55,6 +55,9 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 
 - **✉️ 1:1 Directs**
   - Direct messaging and 1:1 video and audio calls.
+  
+- **📞Direct Call notification**
+  - Get notified of calls with options to reject or accept.
 
 - **🔗 Invitation System**
   - Generate unique invite links for servers and direct messages.
