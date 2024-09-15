@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const DirectsSidebar = ({
   profile,
@@ -59,6 +60,16 @@ const DirectsSidebar = ({
           return <DirectUser key={direct.id} profile={otherGuy} active={params?.profileId == otherGuy.id}/>;
         })}
       </div>
+      {filteredDirects?.length == 0 && Array.from(Array(4).keys()).reverse().map((a) => {
+  const opacityClass = ["opacity-10", "opacity-20", "opacity-30", "opacity-40"][a];
+  return (
+    <div key={a} className={cn("flex items-center gap-3", opacityClass)}>
+      <div className="size-8 w-10 bg-gray-400/10 rounded-full"></div>
+      <div className="size-8 w-full rounded-full bg-gray-400/10"></div>
+    </div>
+  );
+})}
+
       <CurrentUser className="-m-[15px]" profile={profile} />
     </div>
   );
