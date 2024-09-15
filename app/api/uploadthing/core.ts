@@ -16,9 +16,6 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(() => handleAuth())
     .onUploadComplete(async ({ metadata, file }) => {
-    //   console.log("Upload complete for userId:", metadata.userId);
- 
-    //   console.log("file url", file.url);
  
     //   return { uploadedBy: metadata.userId };
     }),

@@ -15,17 +15,15 @@ export default function IncomingCall() {
   const {caller, callType} = data;
   const {socket} = useSocket();
   const accept = () => {
-    console.log(callType)
     const url = queryString.stringifyUrl(
       {
-        url: pathname || "",
+        url: `/directs/direct/${caller?.id}`,
         query: {
           [callType!]: true
         },
       },
       { skipNull: true }
     );
-    console.log(url)
     onClose();
     router.push(url);
   }

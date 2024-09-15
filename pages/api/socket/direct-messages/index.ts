@@ -5,14 +5,12 @@ import { NextApiResponseServerIo } from "@/types";
 import { NextApiRequest } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponseServerIo){
-    console.log('hey i"m here')
     if(req.method !== "POST"){
         return res.status(405).json({error: "Method not allowed"})
     }
     try{
         const profile = await currentProfilePages(req);
         const {content, fileUrl} = req.body;
-        console.log(req.body);
         const {directId} = req.query;
 
         

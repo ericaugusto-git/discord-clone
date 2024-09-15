@@ -12,9 +12,7 @@ export const config = {
 
 
 const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
-    console.log(res);
     if(!res.socket.server.io){
-        console.log("Socket is initializing");
         // @ts-ignore
         const io = new Server(res.socket.server, {
             path: "/api/socket/io"
@@ -23,13 +21,9 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
         const profiles = new Map<string, Profile>(); // Key: socketId, Value: profile
         const socketIds = new Map<string, string>(); // Key: profileId, Value: socketId
         io.on("connection", (socket) => {
-          console.log("A user connected");
          socket.on("register_profile", (profile: Profile) => {
                 profiles.set(socket.id, profile);
-                console.log(profiles)
                 socketIds.set(profile.id, socket.id);
-                console.log("Registred this: ", profiles);
-                console.log(socketIds)
                 socket.on("disconnect", () => {
                   profiles.delete(profile.id);
                 });
@@ -47,18 +41,16 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
           socket.on("call_denied", (caller: Profile) => {
             const socketId = socketIds.get(caller.id);
             const receiver = profiles.get(socketId!)
+            console.log("call denied")
             io.to(socketId!).emit("call_denied", receiver)
           })
 
 
     
-          socket.on("disconnect", () => {
-            console.log("A user disconnected");
-          });
+     
     
           // Handle custom events
           socket.on("message", (msg) => {
-            console.log("Message received: ", msg);
             io.emit("message", msg); // Broadcast to all clients
           });
         });

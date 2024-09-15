@@ -76,7 +76,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         }
         if(req.method === "DELETE"){
                 let deleteMessage = "This message has been deleted";
-                console.log(deleteMessage)
                 directMessage = await db.directMessage.update({
                     where: {
                         id: directMessageId as string,

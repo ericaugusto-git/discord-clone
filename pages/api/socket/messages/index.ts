@@ -11,7 +11,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
     try{
         const profile = await currentProfilePages(req);
         const {content, fileUrl} = req.body;
-        console.log(req.body);
         const {serverId, channelId} = req.query;
 
         if(!profile){

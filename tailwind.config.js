@@ -67,7 +67,7 @@ module.exports = withUt({
           lg: "var(--radius)",
           md: "calc(var(--radius) - 2px)",
           sm: "calc(var(--radius) - 4px)",
-          'bento-wrapper-radius': '40px',
+          'bento-wrapper-radius': '37px',
           'bento-item-radius': '27px'
         },
         gap: {

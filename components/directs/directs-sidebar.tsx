@@ -32,7 +32,6 @@ const DirectsSidebar = ({
       return filtered as DirectWithProfile[];
     })
   }
-  console.log(filteredDirects)
   return (
     <div
       className="flex gap-[30px] flex-col h-full text-primary p-[15px] 

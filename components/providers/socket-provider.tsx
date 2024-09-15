@@ -63,12 +63,12 @@ export const SocketProvider = ({
       setIsConnected(false);
     });
 
-      console.log("listening to incoming calls")
       socketInstance.on("incoming_call", (data: {caller: Profile, type: string}) => {
           const {caller, type} = data;
           onOpen("incomingCall", {caller, callType: type})
       });
       socketInstance.on("call_denied", ( profile: Profile) => {
+        console.log(profile)
           onOpen("deniedCall", {profile})
       })
 

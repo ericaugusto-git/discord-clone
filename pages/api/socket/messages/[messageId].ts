@@ -88,7 +88,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             }
                 let deleteMessage = "This message has been deleted";
                 deleteMessage += isMessageOwner ? "." : isModOrAdmin ? " by a moderator of the server." : "."
-                console.log(deleteMessage)
                 message = await db.message.update({
                     where: {
                         id: messageId as string,

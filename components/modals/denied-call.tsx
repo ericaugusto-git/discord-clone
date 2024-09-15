@@ -38,7 +38,7 @@ export default function DeniedCall() {
         <UserAvatar src={profile?.imageUrl} className="md:size-16"/>
             <div className="flex flex-col items-center">
               <span>{profile?.name}</span>
-              <span className="text-unfocus-grey font-thin leading-3"> Rejected your call, he hates you</span>
+              <span className="text-unfocus-grey font-thin leading-3"> rejected your call</span>
             <Image className="my-6" src="/sadding.webp" width={128} height={128} alt="sad"/>
             </div>
             <div className="flex gap-4 mt-2">

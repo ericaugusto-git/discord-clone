@@ -22,7 +22,6 @@ const ChatVideoButton = () => {
 
   const onClick = (video?: boolean) => {
     socket.emit('incoming_call', {receiverId: params?.profileId, type: video ? "video" : "audio"})
-    console.log(params)
     const url = qs.stringifyUrl(
       {
         url: pathname || "",
