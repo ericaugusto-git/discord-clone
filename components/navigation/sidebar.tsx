@@ -47,8 +47,7 @@ const Sidebar = async () => {
                     <NavigationItem
                         name={server.name}
                         id={server.id}
-                        imageUrl={server.imageUrl}
-                    >
+                        imageUrl={server.imageUrl}>
 
                     </NavigationItem>
                 </div>

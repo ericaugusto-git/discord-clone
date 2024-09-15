@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ActionTooltip from "../action-tooltip";
 import { cn } from "@/lib/utils";
-import { useParams , useRouter} from "next/navigation";
+import { useParams , usePathname, useRouter} from "next/navigation";
 import { currentProfile } from "@/lib/current-profile";
 import UserAvatar from "../user-avatar";
 import BackgroundImage from "../ui/background-image";
@@ -20,8 +20,9 @@ const NavigationItem = (
 ) => {
     const params = useParams()
     const router = useRouter();
+    const pathName = usePathname();
     const {setCurrentChat} = useCurrentChat();
-
+    const active = id ? params?.serverId === id : pathName?.includes('/directs');
     const changeChannel = () => {
         if(id)
             router.push(`/servers/${id}`)
@@ -48,7 +49,7 @@ const NavigationItem = (
             )}/> */}
             
             <div className={cn("relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden",
-                params?.serverId === id && "bg-primary/10 text-primary rounded-[16px]")}>
+                active && "bg-primary/10 text-primary rounded-[16px]")}>
                     <BackgroundImage src={imageUrl} size={'48px'}/>
 
             </div>

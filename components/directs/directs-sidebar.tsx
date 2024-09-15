@@ -6,6 +6,7 @@ import DirectUser from "./direct-user";
 import { useParams } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { Plus } from "lucide-react";
+import { useState } from "react";
 
 const DirectsSidebar = ({
   profile,
@@ -16,7 +17,21 @@ const DirectsSidebar = ({
 }) => {
   const params = useParams();
   const {onOpen} = useModal();
-  
+  const [filteredDirects, setFilteredDirects] = useState(directs)
+  const filterDirect = (value: string) => {
+    if(!value){
+      setFilteredDirects(directs);
+      return;
+    }
+    setFilteredDirects((lastFiltered) => {
+      const filtered = lastFiltered?.filter((direct) => {
+           const otherMember = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne;
+           return otherMember.name.toLocaleLowerCase().includes(value.toLowerCase())
+         })
+      return filtered as DirectWithProfile[];
+    })
+  }
+  console.log(filteredDirects)
   return (
     <div
       className="flex gap-[30px] flex-col h-full text-primary p-[15px] 
@@ -27,6 +42,7 @@ const DirectsSidebar = ({
           backgroundImage: 'url("/icons/lupa.svg")',
           backgroundSize: "20px",
         }}
+        onChange={(e) => filterDirect(e.target.value)}
         className="bg-[#212121] bg-no-repeat bg-[8px] rounded-full p-1 pl-9 focus-visible:outline-none"
         placeholder="Search..."
       />
@@ -38,7 +54,7 @@ const DirectsSidebar = ({
                               <Plus className="size-4"/>
         </button>
       </div>
-        {directs?.map((direct) => {
+        {filteredDirects?.map((direct) => {
           const otherGuy = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne; 
           return <DirectUser key={direct.id} profile={otherGuy} active={params?.profileId == otherGuy.id}/>;
         })}
