@@ -34,14 +34,14 @@ export const SocketProvider = ({
   const {onOpen} = useModal(); 
 
   useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_SITE_URL!);
     // const socketInstance =  io("http://localhost:3000", {
     //   path: "/api/socket/io",
     //   transports: ["websocket"]
     // });
     
     const socketInstance = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL, {
-      path: "/api/socket/io"
+      path: "/api/socket/io",
+      secure: true
     });
 
 

@@ -9,7 +9,7 @@ import { redirectToDirect } from "@/lib/direct-redirect";
 export default function DirectUser({profile, active}: {profile: Profile, active: boolean}){
     const router = useRouter();
     const onClick = () => {
-        redirectToDirect(profile.id)
+        router.push(`/directs/direct/${profile.id}`)
     }
     return ( 
         <button

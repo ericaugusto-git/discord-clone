@@ -20,8 +20,6 @@ export default function WelcomePage (){
                 <p className="text-white">Well, hello there! 👋</p>
                 <p>This project is for educational purposes only and is not intended for real-world use.</p>
                 <p>Please avoid uploading any sensitive information, as <span className="text-red-400">ITS NOT PRIVATE.</span></p>
-                {/* <p>Chats plus uploaded stuff might be lost if i feel like resetting the DB</p> */}
-                {/* <p>You got the chase, this is a portfo</p> */}
                 <div className="flex gap-3 items-center justify-center my-2">
                     {/* <ActionTooltip side="bottom" align="center" label="projet repo">
                         <a href="https://github.com/ericaugusto-git" target="_blank" className='group size-10 bg-direct-sidebar-accent shadow-slate-50/10 shadow-inner flex items-center justify-center rounded-full'><span style={{maskImage: `url("/icons/github.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
