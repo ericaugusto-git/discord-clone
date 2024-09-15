@@ -93,3 +93,21 @@ body,
   mask-position: center;
   mask-size: cover;
 }
+
+
+:root {
+  --chat-grey: #E0E0E0; /* Light grey for chat background */
+  --server-sidebar: #F8F9FA; /* Very light grey for the sidebar */
+  --bento-item: #EAEAEA; /* Light grey for clickable items */
+  --direct-sidebar-accent: #D0D0D0; /* Accent color for the sidebar */
+  --unfocus-grey: #444444;
+}
+
+/* Dark mode */
+.dark {
+  --unfocus-grey: #b4b4b4;
+  --chat-grey: #333333;
+  --server-sidebar: #121212;
+  --bento-item: #242424;
+  --direct-sidebar-accent: #212121;
+}

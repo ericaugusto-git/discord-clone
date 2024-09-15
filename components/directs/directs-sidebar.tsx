@@ -44,7 +44,7 @@ const DirectsSidebar = ({
           backgroundSize: "20px",
         }}
         onChange={(e) => filterDirect(e.target.value)}
-        className="bg-[#212121] bg-no-repeat bg-[8px] rounded-full p-1 pl-9 focus-visible:outline-none"
+        className="bg-direct-sidebar-accent bg-no-repeat bg-[8px] rounded-full p-1 pl-9 focus-visible:outline-none"
         placeholder="Search..."
       />
       <div className="flex flex-col gap-2 ">
@@ -64,8 +64,8 @@ const DirectsSidebar = ({
   const opacityClass = ["opacity-10", "opacity-20", "opacity-30", "opacity-40"][a];
   return (
     <div key={a} className={cn("flex items-center gap-3", opacityClass)}>
-      <div className="size-8 w-10 bg-gray-400/10 rounded-full"></div>
-      <div className="size-8 w-full rounded-full bg-gray-400/10"></div>
+      <div className="size-8 w-10 bg-direct-sidebar-accent rounded-full"></div>
+      <div className="size-8 w-full rounded-full bg-direct-sidebar-accent"></div>
     </div>
   );
 })}

@@ -21,13 +21,14 @@ module.exports = withUt({
       },
       extend: {
         backgroundColor: {
-          'chat-grey': '#333333',
-          'server-sidebar': '#121212',
-          'bento-item': '#242424',
-          'direct-sidebar-accent': '#212121'
+          'chat-grey': 'var(--chat-grey)',
+          'server-sidebar': 'var(--server-sidebar)',
+          'bento-item': 'var(--bento-item)',
+          'direct-sidebar-accent': 'var(--direct-sidebar-accent)',
 
         },
         colors: {
+          "unfocus-grey": 'var(--unfocus-grey)',
           border: "hsl(var(--border))",
           input: "hsl(var(--input))",
           ring: "hsl(var(--ring))",
@@ -61,7 +62,6 @@ module.exports = withUt({
             DEFAULT: "hsl(var(--card))",
             foreground: "hsl(var(--card-foreground))",
           },
-          "unfocus-grey": "#b4b4b4"
         },
         borderRadius: {
           lg: "var(--radius)",
