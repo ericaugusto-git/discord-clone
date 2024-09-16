@@ -29,13 +29,14 @@ const DirectsSidebar = ({
            const otherMember = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne;
            return otherMember.name.toLocaleLowerCase().includes(value.toLowerCase())
          })
+
       return filtered as DirectWithProfile[];
     })
   }
   return (
     <div
       className="flex gap-[30px] flex-col h-full text-primary p-[15px] 
-    dark:bg-server-sidebar md:rounded-l-bento-item-radius bg-[#F2F3F5]  pt-12 md:p-0 md:m-0"
+    dark:bg-server-sidebar md:rounded-l-bento-item-radius bg-[#F2F3F5]  pt-12 md:pt-[15px] w-full"
     >
       <input
         style={{

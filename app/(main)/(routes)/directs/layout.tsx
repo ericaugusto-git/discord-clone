@@ -22,7 +22,7 @@ const Direct = async ({children}: {children: React.ReactNode}) => {
             </div>
             
             <section className="w-full h-full">
-                <WelcomePage directs={directs} profile={profile}/>
+                <WelcomePage directs={directs}/>
                     {children}
             </section>
         </div>
