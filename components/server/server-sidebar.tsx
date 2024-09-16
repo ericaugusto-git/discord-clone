@@ -69,7 +69,7 @@ const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
 
     return ( 
         <div className="flex flex-col h-full text-primary w-full 
-        dark:bg-server-sidebar rounded-l-bento-item-radius bg-[#F2F3F5]">
+        bg-server-sidebar md:rounded-l-bento-item-radius mt-12 pb-12 md:p-0 md:m-0">
             <ServerHeader
             server={server}
             role={role}

@@ -97,10 +97,12 @@ body,
 
 :root {
   --chat-grey: #E0E0E0; /* Light grey for chat background */
-  --server-sidebar: #F8F9FA; /* Very light grey for the sidebar */
+  --server-sidebar: #F2F3F5; /* Very light grey for the sidebar */
   --bento-item: #EAEAEA; /* Light grey for clickable items */
   --direct-sidebar-accent: #D0D0D0; /* Accent color for the sidebar */
   --unfocus-grey: #444444;
+  --main-bg: #f7f7f8;
+  --opposite-bg: #1d1d1d;
 }
 
 /* Dark mode */
@@ -110,4 +112,6 @@ body,
   --server-sidebar: #121212;
   --bento-item: #242424;
   --direct-sidebar-accent: #212121;
+  --main-bg: #1d1d1d;
+  --opposite-bg:#f7f7f8;
 }

@@ -26,10 +26,9 @@ const ChatHeader = () => {
     if(!direct && !server)
         return null;
     return ( 
-        <div className="text-md font-semibold px-3 flex items-center h-12 bg-bento-item rounded-bento-item-radius">
+        <div className="text-md font-semibold px-3 flex items-center h-12 bg-bento-item rounded-bento-item-radius w-full">
             {currentChat && (
             <>
-                {/* <MobileToggle serverId={serverId}/> */}
                 {type === "channel" && (
                     <Hash className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2"/>
                 )}

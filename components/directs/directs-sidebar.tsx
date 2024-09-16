@@ -35,7 +35,7 @@ const DirectsSidebar = ({
   return (
     <div
       className="flex gap-[30px] flex-col h-full text-primary p-[15px] 
-    dark:bg-server-sidebar rounded-l-bento-item-radius bg-[#F2F3F5]"
+    dark:bg-server-sidebar md:rounded-l-bento-item-radius bg-[#F2F3F5]  pt-12 md:p-0 md:m-0"
     >
       <input
         style={{

@@ -31,9 +31,9 @@ const Sidebar = async () => {
     text-pretty w-full rounded-bento-item-radius
     dark:bg-bento-item bg-[#E3E5E8] py-3">
         <NavigationItem
-
+        home={true}
         name={'direct'}
-        imageUrl="/logo.webp"
+        imageUrl="/logo.svg"
         >
 
         </NavigationItem>

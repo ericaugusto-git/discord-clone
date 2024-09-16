@@ -21,9 +21,9 @@ const Direct = async ({children}: {children: React.ReactNode}) => {
                 <DirectsSidebar profile={profile} directs={directs}/>
             </div>
             
-            <section className="bg-chat-grey rounded-r-bento-item-radius w-full h-full">
-                <WelcomePage/>
-                {children}
+            <section className="w-full h-full">
+                <WelcomePage directs={directs} profile={profile}/>
+                    {children}
             </section>
         </div>
     </div>

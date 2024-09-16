@@ -34,6 +34,7 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
 
 
     return (
+    <div className="size-full bg-chat-grey rounded-bento-item-radius md:rounded-l-none ">
             <ChatPage
                 type="direct"
                 chatProps={{
@@ -50,6 +51,7 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
                 currentProfile={profile}
                 name={otherMember.name}
             />
+     </div>
     );
 }
  

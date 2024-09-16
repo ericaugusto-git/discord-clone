@@ -12,14 +12,19 @@ module.exports = withUt({
     ],
     prefix: "",
     theme: {
+
       container: {
         center: true,
         padding: "2rem",
         screens: {
+          "xsm": {min: "380px"},
           "2xl": "1400px",
         },
       },
       extend: {
+        screens: {
+          "xsm": "380px"
+        },
         backgroundColor: {
           'chat-grey': 'var(--chat-grey)',
           'server-sidebar': 'var(--server-sidebar)',
@@ -29,6 +34,8 @@ module.exports = withUt({
         },
         colors: {
           "unfocus-grey": 'var(--unfocus-grey)',
+          "main-bg": "var(--main-bg)",
+          "opposite-bg": "var(--opposite-bg)",
           border: "hsl(var(--border))",
           input: "hsl(var(--input))",
           ring: "hsl(var(--ring))",

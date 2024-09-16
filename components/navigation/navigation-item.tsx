@@ -12,11 +12,12 @@ import { useCurrentChat } from "@/hooks/use-current-chat-store";
 type NavigationItemProps = {
     id?: string,
     imageUrl: string,
-    name: string
+    name: string,
+    home?: boolean
 }
 
 const NavigationItem = (
-    {id, imageUrl, name}: NavigationItemProps
+    {id, imageUrl, name, home}: NavigationItemProps
 ) => {
     const params = useParams()
     const router = useRouter();
@@ -48,8 +49,8 @@ const NavigationItem = (
                 params?.serverId === id ? "h-[36px]" : "h-[8px]"
             )}/> */}
             
-            <div className={cn("relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[17px] transition-[border-radius] overflow-hidden",
-                active && "bg-primary/10 text-primary border-2 border-black dark:border-white rounded-[17px]")}>
+            <div className={cn("relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[17px] bg-slate-300 dark:bg-server-sidebar transition-[border-radius,filter] duration-300 overflow-hidden",
+                active && "bg-primary/10 text-primary  rounded-[17px]",home && "saturate-0", home && active && "bg-slate-300 dark:bg-server-sidebar saturate-100")}>
                     <BackgroundImage src={imageUrl} size={'48px'}/>
 
             </div>

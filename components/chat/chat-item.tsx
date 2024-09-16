@@ -153,7 +153,7 @@ export const ChatItem = (
                 </div>
                 <div className="flex flex-col w-full">
                     {/* name of the user role icon and time stamp of the msg */}
-                    <div className="flex items-center gap-x-2">
+                    <div className="flex sm:items-center sm:flex-row gap-x-2 text-nowrap flex-col">
                         <div className="flex items-center">
                             <p onClick={onMemberClick} className="font-semibold text-sm hover:underline cursor-pointer">
                                 {chatProfile.name}
