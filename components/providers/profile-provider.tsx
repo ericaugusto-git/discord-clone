@@ -6,6 +6,7 @@ import { Profile } from "@prisma/client";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import { useSocket } from "./socket-provider";
+import { Loader2 } from "lucide-react";
 
 const CurrentProfileContext = createContext<{ profile: Profile | null } | undefined>(undefined);
 
@@ -41,7 +42,10 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
 
   if (loading) {
     // Optionally, you can render a loading indicator here
-    return <div>Loading...</div>;
+    return             <div className="flex flex-col flex-1 justify-center items-center w-full h-full">
+    <Loader2 className="h-7 w-7 text-zinc-500 animate-spin my-4"/>
+    <p className="text-xs text-zinc-500 dark:text-zinc-400">Preparing everything :) ...</p>
+</div>;
   }
 
   return (
