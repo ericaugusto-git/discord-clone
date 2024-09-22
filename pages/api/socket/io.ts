@@ -28,12 +28,22 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
                   profiles.delete(profile.id);
                 });
               });
+              // receiverId = profile ID of the one receiving the call/message
+              socket.on("new_message", (data) => {
+                const {receiverId, message, sender} = data;
+                const receiverSocketId = socketIds.get(receiverId)?.toString();
+                if(!receiverSocketId)
+                  return;
+
+                io.to(receiverSocketId!).emit('new_message', {message, sender})
+              });
+
               socket.on('incoming_call', (data) => {
 
                 const { receiverId, type } = data;
 
                 const receiverSocketId = socketIds.get(receiverId)?.toString();
-                // quem tá emitindo o evento é o caller ent isso da certo
+                // quem tá emitindo o evento é o caller então isso da certo
                 const caller = profiles.get(socket.id)
 
                 io.to(receiverSocketId!).emit('incoming_call', {caller, type});
@@ -41,7 +51,6 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
           socket.on("call_denied", (caller: Profile) => {
             const socketId = socketIds.get(caller.id);
             const receiver = profiles.get(socketId!)
-            console.log("call denied")
             io.to(socketId!).emit("call_denied", receiver)
           })
 

@@ -13,6 +13,8 @@ import { useModal } from "@/hooks/use-modal-store";
 import EmojiPicker from "../emoji-picker";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useCurrentProfile } from "../providers/profile-provider";
+import { useSocket } from "../providers/socket-provider";
 
 
 interface ChatInputProps {
@@ -32,6 +34,8 @@ const ChatInput = (
     {apiUrl, query, name, type}: ChatInputProps
 ) => {
     const {onOpen} = useModal();
+    const {socket} = useSocket();
+    const {profile} = useCurrentProfile();
     const router = useRouter();
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
@@ -49,7 +53,11 @@ const ChatInput = (
                 query: query
             })
             
-            await axios.post(url, value);
+            await axios.post(url, value).then((response) => {
+                if(response.status == 200){
+                    socket.emit("new_message", {receiverId: response.data.receiverId, sender: profile, message: response.data.content})
+                }
+            });
             //TODO scroll to bottom
             form.reset();
             router.refresh();

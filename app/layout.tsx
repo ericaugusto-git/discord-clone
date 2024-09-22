@@ -8,6 +8,7 @@ import ModalProvider from '@/components/providers/modal-provider'
 import { SocketProvider } from '@/components/providers/socket-provider'
 import { QueryProvider } from '@/components/providers/query-provider'
 import { CurrentUserProvider } from '@/components/providers/profile-provider'
+import { Toaster } from '@/components/ui/sonner'
 
 const font = Raleway({ subsets: ['latin'] })
 
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({children,}: { children: React.ReactNode}) {
+  
   return (
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning >
@@ -31,6 +33,7 @@ export default function RootLayout({children,}: { children: React.ReactNode}) {
           <QueryProvider>
             <CurrentUserProvider>
               {children}
+              <Toaster />
             </CurrentUserProvider>
           </QueryProvider>
         </SocketProvider>

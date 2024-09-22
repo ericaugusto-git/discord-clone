@@ -2,18 +2,16 @@
 
 import { cn } from "@/lib/utils";
 import { Profile } from "@prisma/client";
-import UserAvatar from "../user-avatar";
 import { useRouter } from "next/navigation";
-import { redirectToDirect } from "@/lib/direct-redirect";
+import UserAvatar from "../user-avatar";
+import useRedirectToDirect from "@/hooks/use-redirect-to-direct";
 
 export default function DirectUser({profile, active}: {profile: Profile, active: boolean}){
-    const router = useRouter();
-    const onClick = () => {
-        router.push(`/directs/direct/${profile.id}`)
-    }
+   const {redirectToDirect} = useRedirectToDirect();
+   
     return ( 
         <button
-        onClick={onClick}
+        onClick={() => redirectToDirect(profile.id)}
         className={cn("group p-1 px-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1", 
         active && "bg-zinc-700/10 dark:bg-zinc-700/50"
         )}

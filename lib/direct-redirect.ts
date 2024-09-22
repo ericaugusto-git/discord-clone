@@ -1,8 +1,10 @@
-'use server'
-import { redirect } from "next/navigation";
+'use client'
+
+import { useRouter } from "next/navigation";
 
 // bars 🔥
 export async function redirectToDirect(profileId: string) {
-    
-    redirect(`/directs/direct/${profileId}`);
+    const router = useRouter();
+    // router.push(`/directs/direct/${profile.id}`)
+    router.push(`/directs/direct/${profileId}`);
 }

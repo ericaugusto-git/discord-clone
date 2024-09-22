@@ -52,6 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         }
 
         const convoProfile = direct.profileOneId === profile.id ? direct.profileOne : direct.profileTwo;
+
         if(!convoProfile){
             return res.status(404).json({message: "convoProfile not found"}); 
         }
@@ -109,7 +110,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         const updateKey = `chat:${directId}:messages:update`
 
         res?.socket?.server?.io?.emit(updateKey, directMessage);
-
         return res.status(200).json(directMessage);
     }catch(error){
         console.log("[FROM_MESSAGE_ID]", error);

@@ -59,6 +59,9 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **📞Direct Call notification**
   - Get notified of calls with options to reject or accept.
 
+- **🔔 Direct messages notification**
+  - Using [sonner](https://ui.shadcn.com/docs/components/sonner) for new direct message notification.
+
 - **🔗 Invitation System**
   - Generate unique invite links for servers and direct messages.
 

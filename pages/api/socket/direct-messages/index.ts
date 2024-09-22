@@ -76,10 +76,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         })
 
         const channelKey = `chat:${directId}:messages`;
-        // emit new message to socket io
+        // res?.socket?.server?.io?.emit("message_sent", {receiverId: convoProfile.id, message: content, sender: profile})
         res?.socket?.server?.io?.emit(channelKey, message);
 
-        return res.status(200).json(message);
+        return res.status(200).json({...message, receiverId: direct.profileOne.id !== profile.id ? direct.profileOne.id : direct.profileTwo.id});
     }catch(error){
         console.log("[DIRECT_MESSAGES_POST]", error);
         return res.status(500).json({message: "Internal Error"})
