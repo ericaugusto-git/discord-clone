@@ -8,7 +8,6 @@ export async function currentProfile() {
         return null;
     }
 
-    // Use the cached function
     const dbUser =  await db.profile.findUnique({
         where: {
             userId: userId,
