@@ -5,7 +5,7 @@ import { Member, MemberRole, Profile, Server } from "@prisma/client";
 import { ShieldAlert, ShieldCheck } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import UserAvatar from "../user-avatar";
-import { redirectToDirect } from "@/lib/direct-redirect";
+import useRedirectToDirect from "@/hooks/use-redirect-to-direct";
 
 interface ServerMemberProps {
     member: Member & {profile: Profile},
@@ -22,12 +22,10 @@ const ServerMember = (
     {member, server}: ServerMemberProps
 ) => {
     const params = useParams();
-    const router = useRouter();
     const icon = roleIconMap[member.role];
-
+    const {redirectToDirect} = useRedirectToDirect();
     const onClick = () => {
         redirectToDirect(member.profile.id)
-        // router.push(`/directs/direct/${member.profile.id}`);
     }
     return ( 
         <button

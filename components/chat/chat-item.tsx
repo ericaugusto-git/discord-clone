@@ -17,7 +17,7 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import { useModal } from "@/hooks/use-modal-store";
 import { useParams, useRouter } from "next/navigation";
-import { redirectToDirect } from "@/lib/direct-redirect";
+import useRedirectToDirect from "@/hooks/use-redirect-to-direct";
 
 
 interface ChatItemProps {
@@ -70,6 +70,7 @@ export const ChatItem = (
     }: ChatItemProps
 ) => {
     const [isEditing, setIsEditing] = useState(false);
+    const {redirectToDirect} = useRedirectToDirect();
     const {onOpen} = useModal();
 
     const params = useParams();
