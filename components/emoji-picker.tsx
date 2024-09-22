@@ -16,7 +16,8 @@ const EmojiPicker = ({onChange}: EmojiPickerProps) => {
     return ( 
         <Popover>
             <PopoverTrigger>
-            <Smile className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition"/>
+            {/* <Smile className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition"/> */}
+            <div className="mask-center-cover size-6 bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300" style={{maskImage: `url("/icons/emoji.svg")`}}></div>
             </PopoverTrigger>
             <PopoverContent side="right" sideOffset={-40} className="bg-transparent border-none shadow-none drop-shadow-none mb-20">
                 <Picker 

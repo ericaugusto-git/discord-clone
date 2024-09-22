@@ -96,5 +96,17 @@ module.exports = withUt({
         },
       },
     },
-    plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar')],
+    plugins: [require("tailwindcss-animate"), 
+      require('tailwind-scrollbar'),
+      function ({ addUtilities }) {
+        const newUtilities = {
+          '.mask-center-cover': {
+            'mask-repeat': 'no-repeat',
+            'mask-position': 'center',
+            'mask-size': 'cover',
+          },
+        };
+  
+        addUtilities(newUtilities);
+      },],
 });
