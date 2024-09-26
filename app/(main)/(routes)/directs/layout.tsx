@@ -7,7 +7,7 @@ import { getDirects } from "@/lib/direct";
 const Direct = async ({children}: {children: React.ReactNode}) => {
     const profile = await currentProfile();
     if(!profile)
-        return null;
+        return <div>pica</div>;
     
     const directs = await getDirects(profile.id);
     

@@ -1,6 +1,5 @@
 // pages/api/getUserProfile.ts
 import { currentProfile } from '@/lib/current-profile';
-import { NextApiRequest, NextApiResponse } from 'next';
 import { NextResponse } from 'next/server';
 
 
