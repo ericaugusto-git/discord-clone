@@ -1,7 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ChannelType, MemberRole } from "@prisma/client";
-import { channel } from "diagnostics_channel";
 import { NextResponse } from "next/server";
 
 export async function DELETE(req: Request, {params}: {params: {channelId: string}}){

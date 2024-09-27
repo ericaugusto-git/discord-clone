@@ -11,9 +11,7 @@ const Direct = async ({children}: {children: React.ReactNode}) => {
     
     const directs = await getDirects(profile.id);
     
-    if(directs)
-    // 
-    
+
     return <div className="flex flex-col gap-bento-gap h-full">
         <ChatHeader/>
         <div className="flex h-full min-h-0">
@@ -22,7 +20,7 @@ const Direct = async ({children}: {children: React.ReactNode}) => {
             </div>
             
             <section className="w-full h-full">
-                <WelcomePage directs={directs}/>
+                <WelcomePage directs={directs!}/>
                     {children}
             </section>
         </div>

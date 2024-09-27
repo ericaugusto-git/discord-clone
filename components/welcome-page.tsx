@@ -1,18 +1,21 @@
 "use client"
 
-import { Tooltip } from "@radix-ui/react-tooltip";
+import { useModal } from "@/hooks/use-modal-store";
+import { DirectWithProfile, getDirects } from "@/lib/direct";
+import { MessagesSquareIcon } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ActionTooltip from "./action-tooltip";
-import { useModal } from "@/hooks/use-modal-store";
-import { useCurrentProfile } from "./providers/profile-provider";
-import { UserProfile } from "@clerk/nextjs";
-import { MessagesSquareIcon } from "lucide-react";
-import { DirectWithProfile } from "@/lib/direct";
 import MobileToggle from "./mobile-toggle";
+import { useCurrentProfile } from "./providers/profile-provider";
+import DirectsSidebar from "./directs/directs-sidebar";
 
 export default function WelcomePage ({directs}: {directs: DirectWithProfile[]}){
     const {profile} = useCurrentProfile();
+    // let directs;
+    //  getDirects(profile?.id!).then((d) => {
+    //     directs = d;
+    // });
     const {onOpen} = useModal();
     const path = usePathname();
     if(path?.includes('direct/'))
@@ -20,10 +23,8 @@ export default function WelcomePage ({directs}: {directs: DirectWithProfile[]}){
     return (
         <div className="flex flex-col gap-bento-gap h-full">
 
-            <MobileToggle directs={directs} profile={profile!}>
-            <button className="flex md:hidden gap-2 items-center h-10 justify-center bg-opposite-bg text-main-bg rounded-bento-item-radius w-full min-h-0">
-                <MessagesSquareIcon/> open your dms 
-            </button>
+            <MobileToggle isDirects={true} directs={[]} profile={profile!}>
+                <DirectsSidebar profile={profile!} directs={[]!}></DirectsSidebar>
             </MobileToggle>
 
             <div className="w-full bg-chat-grey rounded-bento-item-radius md:rounded-l-none  h-full flex justify-center items-center flex-col gap-3">

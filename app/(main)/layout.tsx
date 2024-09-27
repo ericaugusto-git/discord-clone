@@ -28,7 +28,6 @@ const MainLayout = ({children}: {children: React.ReactNode}) => {
                             </div>
                     </div> */}
                 </main>
-            <div className="absolute inset-1 rounded-bento-wrapper-radius border-[7px] dark:border-[#232323] border-[#e7e7e7] -z-10"></div>
         </div>
      );
 }

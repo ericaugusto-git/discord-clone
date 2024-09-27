@@ -4,8 +4,8 @@ import { useModal } from "@/hooks/use-modal-store";
 import useRedirectToDirect from "@/hooks/use-redirect-to-direct";
 import { Profile } from "@prisma/client";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { 
+import { usePathname } from "next/navigation";
+import {
   createContext,
   useContext,
   useEffect,

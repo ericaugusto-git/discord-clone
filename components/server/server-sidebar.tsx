@@ -1,17 +1,17 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { redirectToSignIn } from "@clerk/nextjs";
+import { RedirectToSignIn } from "@clerk/nextjs";
 import { ChannelType, MemberRole } from "@prisma/client";
-import { redirect } from "next/navigation";
-import ServerHeader from "./server-header";
-import { ScrollArea } from "../ui/scroll-area";
-import ServerSearch from "./server-search";
 import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+import { redirect } from "next/navigation";
+import CurrentUser from "../current-user";
+import { ScrollArea } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
+import ServerHeader from "./server-header";
+import ServerMember from "./server-member";
+import ServerSearch from "./server-search";
 import ServerSection from "./server-section";
 import ServerChannel from "./sever-channel";
-import ServerMember from "./server-member";
-import CurrentUser from "../current-user";
 
 type ServerSidebarProps = {
     serverId: string
@@ -33,7 +33,7 @@ const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
     const profile = await currentProfile();
     
     if(!profile){
-        return redirectToSignIn();
+        return <RedirectToSignIn/>;
     }
 
     const server = await db.server.findUnique({

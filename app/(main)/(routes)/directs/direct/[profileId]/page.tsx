@@ -1,8 +1,6 @@
 import ChatPage from "@/components/chat/chat-page";
-import { useSocket } from "@/components/providers/socket-provider";
 import { currentProfile } from "@/lib/current-profile";
 import { getOrCreateDirect } from "@/lib/direct";
-import { redirectToSignIn } from "@clerk/nextjs";
 import { ChannelType } from "@prisma/client";
 import { redirect } from "next/navigation";
 
@@ -18,9 +16,9 @@ interface MemberIdPageProps {
 
 const Direct = async ({params, searchParams}:MemberIdPageProps) => {
     const profile = await currentProfile();
-
+    console.log(profile)
     if(!profile)
-        return redirectToSignIn();
+        return;
 
     const direct = await getOrCreateDirect(profile.id, params.profileId);
     if(!direct){
@@ -32,7 +30,7 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
 
     const otherMember = profileOne.id === profile.id ? profileTwo : profileOne;
 
-
+console.log("direct aqui")
     return (
     <div className="size-full bg-chat-grey rounded-bento-item-radius md:rounded-l-none ">
             <ChatPage

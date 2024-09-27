@@ -1,12 +1,10 @@
 "use client"
 
-import { useState, useEffect, createContext, useContext, ReactNode } from "react";
-import { currentProfile } from "@/lib/current-profile";
 import { Profile } from "@prisma/client";
-import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
-import { useSocket } from "./socket-provider";
 import { Loader2 } from "lucide-react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { useSocket } from "./socket-provider";
 
 const CurrentProfileContext = createContext<{ profile: Profile | null } | undefined>(undefined);
 

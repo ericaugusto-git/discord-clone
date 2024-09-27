@@ -2,15 +2,16 @@ import ChatHeader from "@/components/chat/chat-header";
 import MobileToggle from "@/components/mobile-toggle";
 import ServerSidebar from "@/components/server/server-sidebar";
 import { currentProfile } from "@/lib/current-profile";
-import { redirectToSignIn } from "@clerk/nextjs";
+import { RedirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const ServerIdLaayout = async (
     {children, params}: {children: React.ReactNode, params: {serverId: string}}
 ) => {
     const profile = await currentProfile();
-    if(!profile)
-        return redirectToSignIn();
+    if(!profile){
+        return <RedirectToSignIn/>;
+    }
     // const server = await db.server.findUnique({
     //     where: {
     //         id: params?.serverId,
@@ -31,7 +32,9 @@ const ServerIdLaayout = async (
     return ( 
         <div className="h-full flex gap-bento-gap flex-col">
             <div className="flex w-full gap-2 items-center">
-                <MobileToggle serverId={params.serverId}/>
+                <MobileToggle serverId={params.serverId}>
+                    <ServerSidebar serverId={params?.serverId}/>
+                </MobileToggle>
                 <ChatHeader/>
             </div>
             <div className="h-full flex min-h-0">

@@ -3,15 +3,20 @@ import { CSSProperties } from 'react';
 
 type BackgroundImageProps = {
   src: string;
+  children?: React.ReactNode
   size: CSSProperties['width']; // This allows any valid CSS width value
-  className?: string
+  className?: string,
+  width?: CSSProperties['width'];
+  height?: CSSProperties['height'];
 };
 
-export default function BackgroundImage({ src, size, className }: BackgroundImageProps) {
+export default function BackgroundImage({children , src, size, className, width, height }: BackgroundImageProps) {
   return (
     <div
-      style={{ backgroundImage: `url("${src}")`, width: size, height: size }}
+      style={{ backgroundImage: `url("${src}")`, width: width ?? size, height: height ?? size }}
       className={cn("backgroundImage", className)}
-    ></div>
+    >
+      {children}
+    </div>
   );
 }

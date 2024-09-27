@@ -1,4 +1,5 @@
 "use client"
+
 import { DirectWithProfile } from "@/lib/direct";
 import { Profile } from "@prisma/client";
 import CurrentUser from "../current-user";
