@@ -8,8 +8,11 @@ export default function AuthLayout({children}: {children: React.ReactNode}){
                 {children}
             </div>
             
-            <BackgroundImage src="/papagaio.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius items-end p-2 hidden lg:flex">
-            <div className="p-2 backdrop-blur-lg bg-white/5 rounded-b-[19px] rounded-t-xl  w-full flex gap-2 flex-col">
+            <BackgroundImage src="/papagaio.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2 hidden lg:flex">
+                <div>
+                photo by Ilo Frey on Pexels: https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/
+                </div>
+            <div className="p-2 backdrop-blur-lg bg-white/5 rounded-b-[19px] rounded-t-xl w-full flex gap-2 flex-col">
                 <h1 className="text-2xl">
                     Welcome to my <span className="font-extrabold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-blue-300 via-yellow-200 to-green-200">Live Chat Fullstack project</span>
                 </h1>
