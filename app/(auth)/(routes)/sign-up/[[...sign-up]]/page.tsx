@@ -6,7 +6,6 @@ import { dark } from "@clerk/themes";
 
 const Page = () => {
     const { resolvedTheme } = useTheme();
-
     return <SignUp   appearance={{
         baseTheme: resolvedTheme === "dark" ? dark : undefined,
       }}/>;

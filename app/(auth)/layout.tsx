@@ -8,15 +8,15 @@ export default function AuthLayout({children}: {children: React.ReactNode}){
                 {children}
             </div>
             
-            <BackgroundImage src="/papagaio.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2 hidden lg:flex text-white">
-                <a target="_blank" href="https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/" className="border border-white/30 text-white/80 rounded-[19px] px-4 hover:text-blue-300 cursor-pointer">
+            <BackgroundImage src="/arara.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2 hidden lg:flex text-white">
+            <a target="_blank" href="https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/" className="border border-white/30 text-white/80 rounded-[19px] px-4 hover:text-blue-300 cursor-pointer">
                 Photo by Ilo Frey on Pexels: 
                 <span className="line-clamp-1">                https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/                </span>
                 </a>
                 
-            <div className="p-2 backdrop-blur-lg bg-white/5 rounded-b-[19px] rounded-t-xl w-full flex gap-2 flex-col">
+            <div className="p-2 backdrop-blur-xl bg-white/5 rounded-b-[19px] rounded-t-xl w-full flex gap-2 flex-col">
                 <h1 className="text-2xl">
-                    Welcome to my <span className="font-extrabold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-blue-300 via-yellow-200 to-green-200">Live Chat Fullstack project</span>
+                    Welcome to my fullstack project <span className="font-extrabold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-[#00C4AF] via-[#2387C0] to-[#DB8090]">Discourse - Live Chat</span>
                 </h1>
                 <span>The authentication is here to prevent abuse and it&apos;s handled by <a className="text-blue-300" href="https://clerk.com" target="_blank">clerkjs.</a></span>
                 <div className="flex items-center gap-2">

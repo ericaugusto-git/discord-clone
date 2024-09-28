@@ -16,7 +16,6 @@ interface MemberIdPageProps {
 
 const Direct = async ({params, searchParams}:MemberIdPageProps) => {
     const profile = await currentProfile();
-    console.log(profile)
     if(!profile)
         return;
 
@@ -30,7 +29,6 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
 
     const otherMember = profileOne.id === profile.id ? profileTwo : profileOne;
 
-console.log("direct aqui")
     return (
     <div className="size-full bg-chat-grey rounded-bento-item-radius md:rounded-l-none ">
             <ChatPage
