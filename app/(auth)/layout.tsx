@@ -8,10 +8,12 @@ export default function AuthLayout({children}: {children: React.ReactNode}){
                 {children}
             </div>
             
-            <BackgroundImage src="/papagaio.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2 hidden lg:flex">
-                <div>
-                photo by Ilo Frey on Pexels: https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/
-                </div>
+            <BackgroundImage src="/papagaio.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2 hidden lg:flex text-white">
+                <a target="_blank" href="https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/" className="border border-white/30 text-white/80 rounded-[19px] px-4 hover:text-blue-300 cursor-pointer">
+                Photo by Ilo Frey on Pexels: 
+                <span className="line-clamp-1">                https://www.pexels.com/pt-br/foto/foto-de-arara-amarela-e-azul-com-uma-asa-aberta-empoleirada-em-uma-vara-de-madeira-2317904/                </span>
+                </a>
+                
             <div className="p-2 backdrop-blur-lg bg-white/5 rounded-b-[19px] rounded-t-xl w-full flex gap-2 flex-col">
                 <h1 className="text-2xl">
                     Welcome to my <span className="font-extrabold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-blue-300 via-yellow-200 to-green-200">Live Chat Fullstack project</span>
@@ -25,10 +27,10 @@ export default function AuthLayout({children}: {children: React.ReactNode}){
                 <span className="px-2">|</span>
                     {/* More about me: */}
                             <ActionTooltip side="bottom" align="center" label="my website">
-                                <a href="https://ericaugusto.pages.dev"  target="_blank" className='group'><span style={{maskImage: `url("/icons/globe.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
+                                <a href="https://ericaugusto.pages.dev"  target="_blank" className='group'><span style={{maskImage: `url("/icons/globe.svg")`}} className="block mx-auto size-[18px] bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
                             </ActionTooltip>
                             <ActionTooltip side="bottom" align="center" label="my linkedin">
-                                <a href="https://www.linkedin.com/in/eric-augusto-775245a9/"  target="_blank" className='group'><span style={{maskImage: `url("/icons/linkedin.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
+                                <a href="https://www.linkedin.com/in/eric-augusto-775245a9/"  target="_blank" className='group'><span style={{maskImage: `url("/icons/linkedin.svg")`}} className="block mx-auto size-[18px] bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
                             </ActionTooltip>
                 </div>
 

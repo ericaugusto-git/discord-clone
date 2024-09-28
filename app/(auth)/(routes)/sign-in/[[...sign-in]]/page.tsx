@@ -8,6 +8,5 @@ export default function Page() {
   const { resolvedTheme } = useTheme();
   return <SignIn 
   appearance={{
-    baseTheme: resolvedTheme === "dark" ? dark : undefined,
-  }}/>;
+    baseTheme: resolvedTheme === "dark" ? dark : undefined }}/>;
 }
