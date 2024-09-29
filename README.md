@@ -13,7 +13,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **💬 Messaging**
   - Real-time messaging using [Socket.IO](https://socket.io) WebSocket and a [@tanstack/query](https://tanstack.com/query/latest) polling fallback.
     
-  ![direct](https://github.com/user-attachments/assets/5895d329-0ecf-4498-841d-cbe0821aff2f)
+    ![direct](https://github.com/user-attachments/assets/5895d329-0ecf-4498-841d-cbe0821aff2f)
 - **🔊 Video and Audio call**
   - Realtime video and audio call with [LiveKit](https://livekit.io)
 
@@ -32,7 +32,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **🏠 Servers**
   - Create and customize servers where you can add audio, text and video channels.
   
-  ![server_creation](https://github.com/user-attachments/assets/8ac618c0-040d-4bca-8706-3dd6cf69f263)
+    ![server_creation](https://github.com/user-attachments/assets/8ac618c0-040d-4bca-8706-3dd6cf69f263)
 - **✏️ Message Management**
   - Delete and edit messages in real time.
 
@@ -49,7 +49,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **🌗 Light / Dark Mode**
   - Support for both light and dark themes with [TailwindCSS](https://tailwindcss.com)
     
-![theme](https://github.com/user-attachments/assets/cac842b0-a9b7-49c2-88de-194fae76e422)
+    ![theme](https://github.com/user-attachments/assets/cac842b0-a9b7-49c2-88de-194fae76e422)
 
 - **📱 Fully Responsive**
 
@@ -65,7 +65,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 - **📞Direct Call notification**
   - Get notified of calls with options to reject or accept.
   
-![directs_notification](https://github.com/user-attachments/assets/e0949910-ec15-4c7e-ac8b-024447204904)
+    ![directs_notification](https://github.com/user-attachments/assets/e0949910-ec15-4c7e-ac8b-024447204904)
 - **🔔 Direct messages notification**
   - Using [sonner](https://ui.shadcn.com/docs/components/sonner) for new direct message notification.
  
