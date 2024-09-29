@@ -22,6 +22,7 @@ interface ChatMessagesProps {
     paramKey: "channelId" | "directId";
     paramValue: string;
     type: "channel" | "direct";
+    directPicture?: string
     
 }
 
@@ -36,12 +37,12 @@ type MessageWithMemberWithProfile = Message & {
 type DirectMsgWithProfile = DirectMessage & {profile: Profile}
 
 const ChatMessages = ({
-    name, member, currentProfile, chatId, apiUrl, socketUrl, socketQuery, paramKey, paramValue, type
+    name, member, currentProfile, chatId, apiUrl, socketUrl, socketQuery, paramKey, paramValue, type, directPicture
 }: ChatMessagesProps) => {
     const queryKey = `chat:${chatId}`
     const addKey = `chat:${chatId}:messages`
     const updateKey = `chat:${chatId}:messages:update`
-
+    console.log(member)
     const {       
         data,
         fetchNextPage,
@@ -88,6 +89,7 @@ const ChatMessages = ({
             <ChatWelcome
             type={type}
             name={name}
+            directPicture={directPicture}
             />
                 </>
             )}

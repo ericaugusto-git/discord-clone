@@ -47,7 +47,6 @@ const ChatPage = ({
     useEffect(() => {
         setCurrentChat(type,chat);
     },[chat, setCurrentChat, type]);
-
     return (
         <div className="flex gap-bento-gap flex-col h-full">
             {channelType !== ChannelType.TEXT ? (
@@ -63,6 +62,7 @@ const ChatPage = ({
                         member={member}
                         currentProfile={currentProfile}
                         name={name}
+                        directPicture={(chat as {otherMember: Profile})?.otherMember?.imageUrl}
                         chatId={chatProps.chatId}
                         type={type}
                         apiUrl={chatProps.apiUrl}
