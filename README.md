@@ -80,7 +80,7 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/ericaugusto-git/discord-clone.git
-cd discourse
+cd discord-clone
 ```
 ### 2. Install Dependencies
 ```bash
