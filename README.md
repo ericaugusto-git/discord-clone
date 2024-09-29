@@ -1,3 +1,21 @@
+ <table>
+ <tr>
+   <td style="text-align: center;">
+     <a href="https://github.com/ericaugusto-git/discord-clone/blob/main/README.md" target="_blank">
+       <img src="https://github.com/ericaugusto-git/ericaugusto-git/assets/56616279/dea722d8-626b-42f0-8ad0-2b92ef1e390e" alt="US flag" width="17px">
+        English
+     </a>
+   </td>
+ </tr>
+ <tr>
+   <td style="text-align: center;">
+     <a href="https://github.com/ericaugusto-git/discord-clone/blob/main/README-pt_BR.md" target="_blank">
+       <img src="https://github.com/ericaugusto-git/ericaugusto-git/assets/56616279/aef79d33-f000-4730-8444-cc5c52c75d01" alt="Brazil flag" width="17px">
+       Português
+     </a>
+   </td>
+ </tr>
+</table>
 
 ## <img src="https://github.com/user-attachments/assets/83940099-079f-4c06-bebc-6a288aceeb4a" width="30px" align="top"> Discourse - Real-Time Chat, Video & Audio Calls
 <p>
