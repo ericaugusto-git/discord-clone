@@ -51,7 +51,7 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
                 });
           socket.on("call_denied", (caller: Profile) => {
             const socketId = socketIds.get(caller.id);
-            const receiver = profiles.get(socketId!)
+            const receiver = profiles.get(socket.id)
             io.to(socketId!).emit("call_denied", receiver)
           })
 
