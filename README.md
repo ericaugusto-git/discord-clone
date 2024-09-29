@@ -3,10 +3,9 @@
 <p>
   Fullstack WebApp made with NextJs, Socket.Io and Prisma.
 </p>
-<p>  
-This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a new design and some new features outside of the course scope. Check it out:
-</p>
 
+
+This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a new design and some new features outside of the course scope. Check it out:
 
 ### 🚀 Main Features
 
