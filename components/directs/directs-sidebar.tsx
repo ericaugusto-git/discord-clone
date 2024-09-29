@@ -7,18 +7,26 @@ import DirectUser from "./direct-user";
 import { useParams } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useSocket } from "../providers/socket-provider";
+import axios from "axios";
+import useDirects from "../providers/directs-provider";
 
 const DirectsSidebar = ({
   profile,
-  directs,
+  // directs
 }: {
   profile: Profile;
-  directs: DirectWithProfile[] | null;
+  // directs: D irectWithProfile[] | null;
 }) => {
   const params = useParams();
   const {onOpen} = useModal();
+  const {directs} = useDirects();
+  useEffect(() => {
+    setFilteredDirects(directs);
+    console.log(directs);
+  }, [directs])
   const [filteredDirects, setFilteredDirects] = useState(directs)
   const filterDirect = (value: string) => {
     if(!value){

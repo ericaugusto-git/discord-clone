@@ -1,14 +1,13 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useModal } from "@/hooks/use-modal-store";
 import { PhoneCall, PhoneMissed } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import { useSocket } from "../providers/socket-provider";
 import { DialogHeader } from "../ui/dialog";
 import UserAvatar from "../user-avatar";
 
 export default function IncomingCall() {
-  const pathname = usePathname();
   const router = useRouter();
   const {isOpen, type, onClose, data} = useModal();
   const isModalOpen = isOpen && type == 'incomingCall'

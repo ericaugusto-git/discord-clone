@@ -11,11 +11,7 @@ import { useCurrentProfile } from "./providers/profile-provider";
 import DirectsSidebar from "./directs/directs-sidebar";
 
 export default function WelcomePage ({directs}: {directs: DirectWithProfile[]}){
-    const {profile} = useCurrentProfile();
-    // let directs;
-    //  getDirects(profile?.id!).then((d) => {
-    //     directs = d;
-    // });
+const {profile} = useCurrentProfile();
     const {onOpen} = useModal();
     const path = usePathname();
     if(path?.includes('direct/'))
@@ -24,7 +20,7 @@ export default function WelcomePage ({directs}: {directs: DirectWithProfile[]}){
         <div className="flex flex-col gap-bento-gap h-full">
 
             <MobileToggle isDirects={true} directs={[]} profile={profile!}>
-                <DirectsSidebar profile={profile!} directs={[]!}></DirectsSidebar>
+                <DirectsSidebar profile={profile!}></DirectsSidebar>
             </MobileToggle>
 
             <div className="w-full bg-chat-grey rounded-bento-item-radius md:rounded-l-none  h-full flex justify-center items-center flex-col gap-3">

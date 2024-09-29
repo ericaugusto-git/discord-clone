@@ -15,14 +15,10 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
     if(!res.socket.server.io){
         // @ts-ignore
         const io = new Server(res.socket.server, {
-            path: "/api/socket/io",
-            cors: {
-              origin: "https://discourse-live-chat.vercel.app", // Change this to your Vercel frontend URL
-              methods: ["GET", "POST"],
-              credentials: true,
-            },
+            path: "/api/socket/io"
         });
         res.socket.server.io = io;
+        // this is very bad but it works for demonstration purposes :D
         const profiles = new Map<string, Profile>(); // Key: socketId, Value: profile
         const socketIds = new Map<string, string>(); // Key: profileId, Value: socketId
         io.on("connection", (socket) => {
@@ -39,7 +35,7 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
                 const receiverSocketId = socketIds.get(receiverId)?.toString();
                 if(!receiverSocketId)
                   return;
-
+                console.log("emitting new Message")
                 io.to(receiverSocketId!).emit('new_message', {message, sender})
               });
 

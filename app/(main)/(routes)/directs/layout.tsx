@@ -3,11 +3,12 @@ import DirectsSidebar from "@/components/directs/directs-sidebar";
 import WelcomePage from "@/components/welcome-page";
 import { currentProfile } from "@/lib/current-profile";
 import { getDirects } from "@/lib/direct";
+import { RedirectToSignIn } from "@clerk/nextjs";
 
 const Direct = async ({children}: {children: React.ReactNode}) => {
     const profile = await currentProfile();
     if(!profile)
-        return <div>pica</div>;
+        return <RedirectToSignIn/>;
     
     const directs = await getDirects(profile.id);
     
@@ -16,7 +17,7 @@ const Direct = async ({children}: {children: React.ReactNode}) => {
         <ChatHeader/>
         <div className="flex h-full min-h-0">
             <div className="hidden md:flex h-full w-60 z-20 flex-col">
-                <DirectsSidebar profile={profile} directs={directs}/>
+                <DirectsSidebar profile={profile}/>
             </div>
             
             <section className="w-full h-full">

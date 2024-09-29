@@ -3,15 +3,28 @@
 import { Profile } from "@prisma/client";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
 import { useSocket } from "./socket-provider";
 
-const CurrentProfileContext = createContext<{ profile: Profile | null } | undefined>(undefined);
+const CurrentProfileContext = createContext<{ profile: Profile | null, setProfile: Dispatch<Profile | null> } | undefined>(undefined);
 
 export const useCurrentProfile = () => {
   const context = useContext(CurrentProfileContext);
   if (context === undefined) {
-    throw new Error('useCurrentProfile must be used within a SocketProvider');
+    throw new Error('useCurrentProfile must be used within a CurrentUserProvider');
+  }
+  const {profile, setProfile} = context;
+  if(!profile){
+    console.log("profile não existia")
+    const fetchProfile = async () => {
+      try {
+        const profile = (await axios.get('/api/current-profile')).data
+        setProfile(profile);
+      } catch (error) {
+        console.error('Failed to fetch profile:', error);
+      }
+    };
+    fetchProfile();
   }
   return context;
 };
@@ -46,7 +59,7 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <CurrentProfileContext.Provider value={{ profile }}>
+    <CurrentProfileContext.Provider value={{ profile, setProfile }}>
       {children}
     </CurrentProfileContext.Provider>
   );

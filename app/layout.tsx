@@ -10,6 +10,7 @@ import { QueryProvider } from '@/components/providers/query-provider'
 import { CurrentUserProvider } from '@/components/providers/profile-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { dark } from '@clerk/themes'
+import { DirectsProvider } from '@/components/providers/directs-provider'
 
 const font = Raleway({ subsets: ['latin'] })
 
@@ -34,9 +35,12 @@ export default function RootLayout({children,}: { children: React.ReactNode}) {
         <ModalProvider/>
           <QueryProvider>
             <CurrentUserProvider>
+              <DirectsProvider>
+
               {children}
               <div className="absolute inset-1 rounded-bento-wrapper-radius border-[7px] dark:border-[#232323] border-[#e7e7e7] -z-10"></div>
               <Toaster />
+              </DirectsProvider>
             </CurrentUserProvider>
           </QueryProvider>
         </SocketProvider>
