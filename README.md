@@ -74,9 +74,57 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
     ![sonner](https://github.com/user-attachments/assets/387684c4-214a-4ce3-b4fb-11be8228292f)
 - **🔗 Invitation System**
   - Generate unique invite links for servers and direct messages.
+ 
+## 🛠️ Running Discourse Locally
 
+### 1. Clone the Repository
+```bash
+git clone https://github.com/ericaugusto-git/discord-clone.git
+cd discourse
+```
+### 2. Install Dependencies
+```bash
+npm install
+# or
+yarn install
+```
 
+### 3. Set up Environment Variables
+Create a .env file in the root of your project and add the following environment variables:
+```bash
+# Clerk (Authentication)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/setup
+NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/setup
+
+# Prisma (Database)
+DATABASE_URL='mysql://<your-database-credentials>'
+
+# UploadThing (File Uploads)
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
+UPLOADTHING_TOKEN=
+
+# LiveKit (Real-time Video/Audio)
+LIVEKIT_API_KEY=
+LIVEKIT_API_SECRET=
+NEXT_PUBLIC_LIVEKIT_URL=wss://<your-livekit-url>
+
+# Misc
+WDS_SOCKET_PORT=0
+NODE_ENV=production
+```
+
+### 4. Run the Development Server :D
+```
+npm run dev
+# or
+yarn dev
+```
 
 ## ⚠️ Disclaimer
 
-This is intended for educational purposes only. Please be aware that, as with any platform where users can upload content, there is a risk of inappropriate or offensive material being shared. The project maintainers are not responsible for any content uploaded by users. It is recommended to implement content moderation practices if deploying this project publicly.
+This project is intended for educational purposes only. Please be aware that, as with any platform where users can upload content, there is a risk of inappropriate or offensive material being shared. The project maintainers are not responsible for any content uploaded by users. It is recommended to implement content moderation practices if deploying this project publicly.
