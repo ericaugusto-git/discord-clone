@@ -53,6 +53,8 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 
 - **📱 Fully Responsive**
 
+    ![responsive](https://github.com/user-attachments/assets/1135d0cf-5b75-4c99-a54f-a81abf13c4e8)
+
 - **🗄️ New MySql server**
   - Because of the end of Planetscale's hobby free "forever" plan, I'm now hosting the MySql database on [Aiven](https://aiven.io) 
 
