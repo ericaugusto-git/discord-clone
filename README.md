@@ -1,13 +1,14 @@
 
-## <img src="https://github.com/user-attachments/assets/83940099-079f-4c06-bebc-6a288aceeb4a" width="30px" align="top"> Discourse - A Real-Time Chat App with Video & Audio Calls
+## <img src="https://github.com/user-attachments/assets/83940099-079f-4c06-bebc-6a288aceeb4a" width="30px" align="top"> Discourse - Real-Time Chat, Video & Audio Calls
 <p>
-  Fullstack WebApp made with NextJs, Socket.Io and Prisma.
+  Fullstack WebApp made with <b>NextJs</b>, <b>Socket.IO</b> and <b>Prisma</b>. 
 </p>
 
 
 This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a new design and some new features outside of the course scope. Check it out:
+<p>🚀 Deploy: https://discourse-live-chat.onrender.com</p>
 
-### 🚀 Main Features
+### 💡 Main Features
 
 - **💬 Messaging**
   - Real-time messaging using [Socket.IO](https://socket.io) WebSocket and a [@tanstack/query](https://tanstack.com/query/latest) polling fallback.
@@ -15,6 +16,9 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
     ![direct](https://github.com/user-attachments/assets/5895d329-0ecf-4498-841d-cbe0821aff2f)
 - **🔊 Video and Audio call**
   - Realtime video and audio call with [LiveKit](https://livekit.io)
+ 
+    ![call](https://github.com/user-attachments/assets/34094a39-028f-4161-86ae-c761a707efe4)
+
 
 - **📎 Attachments**
   - Send attachments as messages using [UploadThing](https://uploadthing.com).
@@ -37,6 +41,8 @@ This project started as part of [this course](https://www.youtube.com/watch?v=Zb
 
 - **🛠️ Member Management**
   - Manage members with options to kick, change roles (Guest/Moderator), and more.
+    
+    ![image_2024-09-29_144904437](https://github.com/user-attachments/assets/1d65e3d9-4374-4e3e-bef3-a9c477566b79)
 
 
 
