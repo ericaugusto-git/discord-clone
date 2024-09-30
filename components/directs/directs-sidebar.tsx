@@ -25,10 +25,8 @@ const DirectsSidebar = ({
   const {directs} = useDirects();
   useEffect(() => {
     setFilteredDirects(directs);
-    console.log(directs);
   }, [directs])
   const [filteredDirects, setFilteredDirects] = useState(directs)
-  console.log(filteredDirects)
   const filterDirect = (value: string) => {
     if(!value){
       setFilteredDirects(directs);

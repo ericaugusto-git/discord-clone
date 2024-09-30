@@ -14,11 +14,14 @@ export const useCurrentProfile = () => {
     throw new Error('useCurrentProfile must be used within a CurrentUserProvider');
   }
   const {profile, setProfile} = context;
+  const {socket} = useSocket();
+
   if(!profile){
-    console.log("profile não existia")
     const fetchProfile = async () => {
       try {
         const profile = (await axios.get('/api/current-profile')).data
+        if(socket)
+          socket.emit("register_profile", profile)
         setProfile(profile);
       } catch (error) {
         console.error('Failed to fetch profile:', error);

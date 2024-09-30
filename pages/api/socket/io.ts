@@ -35,7 +35,6 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
                 const receiverSocketId = socketIds.get(receiverId)?.toString();
                 if(!receiverSocketId)
                   return;
-                console.log("emitting new Message")
                 io.to(receiverSocketId!).emit('new_message', {message, sender})
               });
 

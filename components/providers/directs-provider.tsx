@@ -21,15 +21,13 @@ export const DirectsProvider = ({children}: {children: React.ReactNode}) => {
     useEffect(() => {
       const getDirects = async () => {
           const directs = (await axios.get('/api/directs')).data;
-          console.log("directs: ", directs);
           setDirects(directs);
       } 
       socket.on("new_message", async () => {
         getDirects();
       });
-    console.log("money")
       getDirects();
-    }, []);
+    }, [socket]);
     return <DirectsContext.Provider value={{directs, setDirects}}>
         {children}
     </DirectsContext.Provider>

@@ -42,7 +42,6 @@ const ChatMessages = ({
     const queryKey = `chat:${chatId}`
     const addKey = `chat:${chatId}:messages`
     const updateKey = `chat:${chatId}:messages:update`
-    console.log(member)
     const {       
         data,
         fetchNextPage,

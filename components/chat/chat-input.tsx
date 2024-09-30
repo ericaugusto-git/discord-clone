@@ -55,7 +55,6 @@ const ChatInput = (
             
             await axios.post(url, value).then((response) => {
                 if(response.status == 200){
-                    console.log("emiting new message")
                     socket.emit("new_message", {receiverId: response.data.receiverId, sender: profile, message: response.data.content})
                 }
             });
