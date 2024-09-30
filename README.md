@@ -22,6 +22,8 @@
   Fullstack WebApp made with <b>NextJs</b>, <b>Socket.IO</b> and <b>Prisma</b>. 
 </p>
 
+![discourse-MadewithClipchamp1-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/ff49013f-115b-4615-8bd1-09e033521627)
+
 
 This project started as part of [this course](https://www.youtube.com/watch?v=ZbX4Ok9YX94) by the extremely generous Code With Antonio, and now it has a new design and some new features outside of the course scope. Check it out:
 <p>🚀 Deploy: https://discourse-live-chat.onrender.com</p>
