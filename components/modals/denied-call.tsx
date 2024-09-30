@@ -28,7 +28,7 @@ export default function DeniedCall() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
-    <DialogContent className="bg-direct-sidebar-accent text-white p-0  overflow-hidden w-fit">
+    <DialogContent className="bg-direct-sidebar-accent p-0  overflow-hidden w-fit">
         <DialogHeader className="pt-8">
             {/* <DialogTitle className="text-2xl text-center font-bold">
                Incoming call 

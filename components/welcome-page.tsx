@@ -40,7 +40,7 @@ const {profile} = useCurrentProfile();
                             <a href="https://github.com/ericaugusto-git" target="_blank" className='group size-10 bg-direct-sidebar-accent shadow-slate-50/10 shadow-inner flex items-center justify-center rounded-full'><span style={{maskImage: `url("/icons/linkedin.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
                         </ActionTooltip> */}
                             <ActionTooltip side="bottom" align="center" label="projet repo">
-                                <a href="https://github.com/ericaugusto-git" target="_blank" className='group'><span style={{maskImage: `url("/icons/github.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
+                                <a href="https://github.com/ericaugusto-git/discord-clone" target="_blank" className='group'><span style={{maskImage: `url("/icons/github.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
                             </ActionTooltip>
                             <ActionTooltip side="bottom" align="center" label="my website">
                                 <a href="https://ericaugusto.pages.dev"  target="_blank" className='group'><span style={{maskImage: `url("/icons/globe.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
@@ -49,8 +49,12 @@ const {profile} = useCurrentProfile();
                                 <a href="https://www.linkedin.com/in/eric-augusto-775245a9/"  target="_blank" className='group'><span style={{maskImage: `url("/icons/linkedin.svg")`}} className="block mx-auto size-[18px] bg-black  dark:bg-white svgMask group-hover:opacity-80 cursor-pointer"></span> </a>
                             </ActionTooltip>
                     </div>
+                <p>
+                                    © 2024 Eric Augusto. All rights reserved.
+                </p>
                     <p>
                         <strong>Legal Disclaimer:</strong> The platform is not responsible for user-generated content. Users are solely responsible for their actions, and any illegal activity will be reported and removed.
+
                     </p>
                 </div>
                 <div className="flex gap-3 flex-col md:flex-row text-sm sm:text-base">
@@ -58,6 +62,7 @@ const {profile} = useCurrentProfile();
                     <button  className="border rounded-full px-4 xsm:px-4 dark:hover:bg-slate-50/10 hover:bg-black/10  border-[#AEBBC1] p-2" onClick={() => onOpen("createServer")}>Create a server</button>
                 </div>
             </div>
+
         </div>
     );
 }

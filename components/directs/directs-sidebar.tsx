@@ -28,6 +28,7 @@ const DirectsSidebar = ({
     console.log(directs);
   }, [directs])
   const [filteredDirects, setFilteredDirects] = useState(directs)
+  console.log(filteredDirects)
   const filterDirect = (value: string) => {
     if(!value){
       setFilteredDirects(directs);
@@ -69,7 +70,7 @@ const DirectsSidebar = ({
           return <DirectUser key={direct.id} profile={otherGuy} active={params?.profileId == otherGuy.id}/>;
         })}
       </div>
-      {filteredDirects?.length == 0 && Array.from(Array(4).keys()).reverse().map((a) => {
+      {(!filteredDirects || filteredDirects?.length == 0) && Array.from(Array(4).keys()).reverse().map((a) => {
   const opacityClass = ["opacity-10", "opacity-20", "opacity-30", "opacity-40"][a];
   return (
     <div key={a} className={cn("flex items-center gap-3", opacityClass)}>
