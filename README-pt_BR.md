@@ -140,8 +140,12 @@ NEXT_PUBLIC_LIVEKIT_URL=wss://<your-livekit-url>
 WDS_SOCKET_PORT=0
 NODE_ENV=production
 ```
-
-### 4. Agora é só rodar :D
+### 4. Prisma Setup
+ ```bash
+prisma init
+npx prisma migrate dev
+```
+### 5. Agora é só rodar :D
 ```
 npm run dev
 # or
