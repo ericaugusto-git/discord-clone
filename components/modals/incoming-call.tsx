@@ -43,9 +43,9 @@ export default function IncomingCall() {
         <UserAvatar src={caller?.imageUrl} className="md:size-16"/>
             <div className="flex flex-col items-center">
               <span>{caller?.name}</span>
-              <span className="text-unfocus-grey font-thin leading-3"> Is calling you, well you accept? </span>
+              <span className="text-unfocus-grey dark:font-thin leading-3"> Is calling you, well you accept? </span>
             </div>
-            <div className="flex gap-4 mt-2">
+            <div className="flex gap-4 mt-2 text-white">
               <button onClick={deny} className="bg-[#F03A14] p-2 px-4 rounded flex gap-3 items-center hover:opacity-70 transition-opacity"><PhoneMissed/>decline</button>
               <button onClick={accept} className="bg-[#00B94D] p-2 px-4 rounded flex gap-3 items-center hover:opacity-70 transition-opacity"><PhoneCall/>accept</button>
             </div>

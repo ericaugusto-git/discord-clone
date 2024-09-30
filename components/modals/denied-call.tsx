@@ -38,10 +38,10 @@ export default function DeniedCall() {
         <UserAvatar src={profile?.imageUrl} className="md:size-16"/>
             <div className="flex flex-col items-center">
               <span>{profile?.name}</span>
-              <span className="text-unfocus-grey font-thin leading-3"> rejected your call</span>
+              <span className="text-unfocus-grey dark:font-thin leading-3"> rejected your call</span>
             <Image className="my-6" src="/sadding.webp" width={128} height={128} alt="sad"/>
             </div>
-            <div className="flex gap-4 mt-2">
+            <div className="flex gap-4 mt-2 text-white">
               <button onClick={exitCall} className="bg-[#F03A14] p-2 px-4 rounded flex gap-3 items-center hover:opacity-70 transition-opacity"><PhoneMissed/>oh... guess i well exit the call then</button>
             </div>
             {/* <PhoneIncoming/> */}

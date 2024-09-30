@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
+    productionBrowserSourceMaps: false,
     async redirects() {
         return [
           // Basic redirect
