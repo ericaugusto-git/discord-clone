@@ -141,7 +141,13 @@ WDS_SOCKET_PORT=0
 NODE_ENV=production
 ```
 
-### 4. Run the Development Server :D
+### 4. Prisma Setup
+ ```bash
+prisma init
+npx prisma migrate dev
+```
+
+### 5. Run the Development Server :D
 ```
 npm run dev
 # or
