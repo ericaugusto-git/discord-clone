@@ -22,6 +22,8 @@
   WebApp Fullstack feito com <b>NextJs</b>, <b>Socket.IO</b> e <b>Prisma</b>. 
 </p>
 
+![discourse-MadewithClipchamp1-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/bd6cd7d9-940b-4bdf-98c6-9435a2791314)
+
 
 Este projeto começou como parte deste [curso](https://www.youtube.com/watch?v=ZbX4Ok9YX94) pelo super generoso Code With Antonio, e agora tem um novo design e alguns novos recursos fora do escopo do curso. Confira:
 <p>🚀 Deploy: https://discourse-live-chat.onrender.com</p>
@@ -140,8 +142,12 @@ NEXT_PUBLIC_LIVEKIT_URL=wss://<your-livekit-url>
 WDS_SOCKET_PORT=0
 NODE_ENV=production
 ```
-
-### 4. Agora é só rodar :D
+### 4. Prisma Setup
+ ```bash
+prisma init
+npx prisma migrate dev
+```
+### 5. Agora é só rodar :D
 ```
 npm run dev
 # or
