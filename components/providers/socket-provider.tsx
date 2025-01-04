@@ -87,7 +87,7 @@ export const SocketProvider = ({
           <div onClick={() => {toast.dismiss(notificationId); redirectToDirect(sender.id)}} className="flex items-center w-full cursor-pointer">
             {sender.imageUrl && (
               <Image
-                src={sender.imageUrl}
+                src={sender.imageUrl!}
                 alt="User Photo"
                 width={40}
                 height={40}

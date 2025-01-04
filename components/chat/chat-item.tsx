@@ -150,7 +150,7 @@ export const ChatItem = (
             <div className="group flex gap-x-2 items-start w-full">
                 <div onClick={onMemberClick} className={cn("hover:drop-shadow-md transition", !isOwner && "cursor-pointer")}>
                     <UserAvatar
-                    src={chatProfile.imageUrl}/>
+                    src={chatProfile?.imageUrl!}/>
                 </div>
                 <div className="flex flex-col w-full">
                     {/* name of the user role icon and time stamp of the msg */}

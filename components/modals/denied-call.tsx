@@ -35,7 +35,7 @@ export default function DeniedCall() {
             </DialogTitle> */}
         </DialogHeader>
         <div className="p-4 pt-1 flex items-center justify-center flex-col gap-2">
-        <UserAvatar src={profile?.imageUrl} className="md:size-16"/>
+        <UserAvatar src={profile?.imageUrl!} className="md:size-16"/>
             <div className="flex flex-col items-center">
               <span>{profile?.name}</span>
               <span className="text-unfocus-grey dark:font-thin leading-3"> rejected your call</span>

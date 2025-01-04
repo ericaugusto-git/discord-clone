@@ -17,7 +17,7 @@ export default function DirectUser({profile, active}: {profile: Profile, active:
         )}
         >
             <UserAvatar
-                src={profile.imageUrl}
+                src={profile.imageUrl!}
                 className="h-8 w-8 md:h-8 md:w-8"
             />
             <p
