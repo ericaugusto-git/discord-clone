@@ -1,16 +1,15 @@
+import { DirectsProvider } from '@/components/providers/directs-provider'
+import ModalProvider from '@/components/providers/modal-provider'
+import { CurrentUserProvider } from '@/components/providers/profile-provider'
+import { QueryProvider } from '@/components/providers/query-provider'
+import { SocketProvider } from '@/components/providers/socket-provider'
+import { ThemeProvider } from '@/components/providers/theme-provider'
+import SessionWrapper from '@/components/SessionWrapper'
+import { Toaster } from '@/components/ui/sonner'
+import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import './globals.css'
-import { ClerkProvider } from '@clerk/nextjs'
-import { ThemeProvider } from '@/components/providers/theme-provider'
-import { cn } from '@/lib/utils'
-import ModalProvider from '@/components/providers/modal-provider'
-import { SocketProvider } from '@/components/providers/socket-provider'
-import { QueryProvider } from '@/components/providers/query-provider'
-import { CurrentUserProvider } from '@/components/providers/profile-provider'
-import { Toaster } from '@/components/ui/sonner'
-import { dark } from '@clerk/themes'
-import { DirectsProvider } from '@/components/providers/directs-provider'
 
 const font = Raleway({ subsets: ['latin'] })
 
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: { children: React.ReactNode}) {
   
   return (
-    <ClerkProvider 
+    <SessionWrapper 
     >
     <html lang="en" suppressHydrationWarning >
       <body className={cn(font.className, "bg-[#f7f7f8] dark:bg-[#1D1D1D]")} >
@@ -47,6 +46,6 @@ export default function RootLayout({children,}: { children: React.ReactNode}) {
         </ThemeProvider>
         </body>
     </html>
-    </ClerkProvider>
+    </SessionWrapper>
   )
 }

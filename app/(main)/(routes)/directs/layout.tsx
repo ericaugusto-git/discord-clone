@@ -3,12 +3,12 @@ import DirectsSidebar from "@/components/directs/directs-sidebar";
 import WelcomePage from "@/components/welcome-page";
 import { currentProfile } from "@/lib/current-profile";
 import { getDirects } from "@/lib/direct";
-import { RedirectToSignIn } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const Direct = async ({children}: {children: React.ReactNode}) => {
     const profile = await currentProfile();
     if(!profile)
-        return <RedirectToSignIn/>;
+        return redirect("api/auth/signin");
     
     const directs = await getDirects(profile.id);
     

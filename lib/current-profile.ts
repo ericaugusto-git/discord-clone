@@ -1,21 +1,19 @@
-import { db } from '@/lib/db';
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from 'next/navigation';
+import { getServerSession } from "next-auth/next";
+import { db } from "@/lib/db";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
+export async function currentProfile() {
+  const session: any = await getServerSession(authOptions);
+  
+  if (!session?.user?.id) {
+    return null;
+  }
 
-export async function currentProfile(id?: string) {
-    const { userId } = auth();
-    if (!userId) {
-        return null;
+  const profile = await db.profile.findUnique({
+    where: {
+      id: session.user.id
     }
+  });
 
-    const dbUser =  await db.profile.findUnique({
-        where: {
-            userId: userId,
-        },
-    });
-
-    if(!dbUser)
-        return redirect('/setup')
-    return dbUser;
+  return profile;
 }

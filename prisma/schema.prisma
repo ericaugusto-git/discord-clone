@@ -8,12 +8,14 @@ datasource db {
   relationMode = "prisma"
 }
 
+
 model Profile {
   id              String          @id @default(uuid())
-  userId          String          @unique
+  username        String          @unique
+  hashedPassword  String
   name            String
-  imageUrl        String          @db.Text
-  email           String?          @db.Text
+  imageUrl        String?         @db.Text
+  email           String?         @db.Text
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   directInitiator Direct[]        @relation("ProfileOne")
@@ -125,3 +127,5 @@ enum ChannelType {
   AUDIO
   VIDEO
 }
+
+

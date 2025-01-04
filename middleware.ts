@@ -1,33 +1,29 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { withAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
 
-const ALLOWED_ORIGIN = 'https://kashi-os.pages.dev'
-
-const isPublicRoute = createRouteMatcher([
-  '/api/uploadthing(.*)',
-  '/api/hello(.*)', 
-  '/sign-in(.*)', 
-  '/sign-up(.*)',
-  '/api/livekit(.*)',
-  '/_next(.*)',
-  '/favicon.ico',
-  '/api/socket(.*)'
-])
-
-export default clerkMiddleware((auth, req) => {
-  // Check if request is from the allowed origin
-  const origin = req.headers.get('origin')
-  const referer = req.headers.get('referer')
-
-  if (origin === ALLOWED_ORIGIN || referer?.startsWith(ALLOWED_ORIGIN)) {
-    return // Allow the request to proceed
+export default withAuth(
+  function middleware(req) {
+    // Optionally handle custom middleware logic here
+    return NextResponse.next()
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token // Only allow authenticated users
+    },
+    pages: {
+      signIn: "/sign-in",
+    }
   }
+)
 
-  // Protect all non-public routes
-  if (!isPublicRoute(req)) {
-    auth().protect()
-  }
-})
-
+// Protect all routes except public ones
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    // Protected routes
+    "/directs/:path*",
+    "/servers/:path*",
+    "/setup",
+    // Exclude public routes
+    // "/((?!api/auth|sign-in|sign-up|_next/static|_next/image|favicon.ico).*)",
+  ]
 }

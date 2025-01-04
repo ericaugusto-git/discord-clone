@@ -10,8 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.6.2",
-    "@clerk/themes": "^2.1.32",
+    "@auth/prisma-adapter": "^2.7.4",
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
     "@hookform/resolvers": "^3.3.4",
@@ -31,6 +30,7 @@
     "@tanstack/react-query": "^5.17.9",
     "@uploadthing/react": "^6.8.0",
     "axios": "^1.6.4",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.0",
@@ -40,6 +40,7 @@
     "livekit-server-sdk": "^1.2.7",
     "lucide-react": "^0.303.0",
     "next": "^14.1.4",
+    "next-auth": "^4.24.11",
     "next-themes": "^0.2.1",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
@@ -58,6 +59,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

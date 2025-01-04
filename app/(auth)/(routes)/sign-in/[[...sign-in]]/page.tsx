@@ -1,12 +1,24 @@
-"use client";
+import { SignInForm } from "@/components/auth/sign-in-form"
+import Link from "next/link"
 
-import { SignIn } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
-import { useTheme } from "next-themes";
-
-export default function Page() {
-  const { resolvedTheme } = useTheme();
-  return <SignIn 
-  appearance={{
-    baseTheme: resolvedTheme === "dark" ? dark : undefined }}/>;
+export default function SignIn() {
+  return (
+    <div className="flex flex-col space-y-6 w-full max-w-md mx-auto p-6">
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Welcome back
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Enter your credentials to sign in
+        </p>
+      </div>
+      <SignInForm />
+      <p className="text-sm text-center text-muted-foreground">
+        Don&apos;t have an account?{" "}
+        <Link href="/sign-up" className="text-primary hover:underline">
+          Sign up
+        </Link>
+      </p>
+    </div>
+  )
 }
