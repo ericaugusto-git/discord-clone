@@ -20,7 +20,7 @@ const nextConfig = {
         {
           source: "/",
           destination: "/directs",
-          permanent: true,
+          permanent: false,
         },
       ];
     },
