@@ -1,12 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
  
 const f = createUploadthing();
  
-const handleAuth = () => {
-    const { userId } = auth()
-    if(!userId) throw new Error("Unauthorized");
-    return {userId: userId}
+const handleAuth = async () => {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) throw new Error("Unauthorized");
+    return { userId: session.user.id };
 } 
 
 // FileRouter for your app, can contain multiple FileRoutes

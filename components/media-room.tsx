@@ -2,11 +2,10 @@
 
 import { LiveKitRoom, VideoConference } from "@livekit/components-react";
 import "@livekit/components-styles";
-import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { redirect, usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 interface MediaRoomProps {
     chatId: string;
@@ -19,7 +18,7 @@ export const MediaRoom = ({
     video, 
     audio
 }: MediaRoomProps) => {
-    const { user } = useUser();
+    const { data: session } = useSession();
     const [token, setToken] = useState();
     const pathName = usePathname();
     const router = useRouter();
@@ -29,7 +28,7 @@ export const MediaRoom = ({
         router.push(chatRoot);
     }
     useEffect(() => {
-        const name = `${user?.firstName ?? "Guest"} ${user?.lastName ?? "User"}`;
+        const name = session?.user.username ?? session?.user?.name;
 
         (async () => {
             try{
@@ -40,7 +39,7 @@ export const MediaRoom = ({
                 console.log(error);
             }
         })()
-    }, [user?.firstName, user?.lastName, chatId]);
+    }, [chatId]);
     if(token === ""){
         return (
             <div className="flex flex-col flex-1 justify-center items-center">

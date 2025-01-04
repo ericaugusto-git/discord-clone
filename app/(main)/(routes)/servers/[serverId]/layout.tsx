@@ -2,7 +2,6 @@ import ChatHeader from "@/components/chat/chat-header";
 import MobileToggle from "@/components/mobile-toggle";
 import ServerSidebar from "@/components/server/server-sidebar";
 import { currentProfile } from "@/lib/current-profile";
-import { RedirectToSignUp } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const ServerIdLaayout = async (
@@ -10,7 +9,7 @@ const ServerIdLaayout = async (
 ) => {
     const profile = await currentProfile();
     if(!profile){
-        return <RedirectToSignUp/>;
+        redirect("/sign-in");
     }
     // const server = await db.server.findUnique({
     //     where: {

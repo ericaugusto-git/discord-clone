@@ -1,7 +1,6 @@
 import ChatPage from "@/components/chat/chat-page";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { RedirectToSignUp } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 interface ChannelIdPageProps {
@@ -14,7 +13,7 @@ interface ChannelIdPageProps {
 const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
     const profile = await currentProfile();
     if(!profile){
-        return <RedirectToSignUp/>;
+        return redirect("/sign-in");
     }
     const channel = await db.channel.findUnique({
         where: {
