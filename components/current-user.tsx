@@ -7,9 +7,6 @@ import {
   } from "@/components/ui/avatar"
 
 export default function CurrentUser({profile, className}: {profile: Profile, className?: string}){
-    console.log("profile: ", profile
-
-    )
     const name = profile.username ?? profile.name;
     const initials = name?.slice(0, 2).toUpperCase() || 'U';
     

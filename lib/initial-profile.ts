@@ -1,11 +1,10 @@
 import { db } from '@/lib/db';
 import { getServerSession } from "next-auth/next";
 import { redirect } from 'next/navigation';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from "@/lib/auth-options"
 
 export async function initialProfile() {
     const session = await getServerSession(authOptions);
-    console.log("initial profile: ", session);
     if (!session?.user?.id) {
         return redirect('/sign-in');
     }
