@@ -13,7 +13,7 @@ const InviteCodePage = async (
 ) => {
     const profile = await initialProfile();
     if(!profile){
-        redirect("/sign-in"); 
+        redirect("/sign-up"); 
         return;
     }
 

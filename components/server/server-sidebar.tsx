@@ -1,6 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { RedirectToSignIn } from "@clerk/nextjs";
+import { RedirectToSignUp } from "@clerk/nextjs";
 import { ChannelType, MemberRole } from "@prisma/client";
 import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -33,7 +33,7 @@ const ServerSidebar = async ({serverId}: ServerSidebarProps) => {
     const profile = await currentProfile();
     
     if(!profile){
-        return <RedirectToSignIn/>;
+        return <RedirectToSignUp/>;
     }
 
     const server = await db.server.findUnique({

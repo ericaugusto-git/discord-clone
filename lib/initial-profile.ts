@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 export async function initialProfile (){
     const user = await currentUser();
     if(!user){
-       return redirect('sign-in'); 
+       return redirect('/sign-up'); 
     }
     const dbUser = await db.profile.findUnique({
         where: {
@@ -21,9 +21,7 @@ export async function initialProfile (){
         data: {
             userId: user.id,
             name: `${user.firstName ?? user.username ?? 'Nameless'} ${user.lastName ?? ''}`,
-            imageUrl: user.imageUrl,
-            email: user.emailAddresses[0].emailAddress,
-
+            imageUrl: user.imageUrl
         }
     })
     return newUser;

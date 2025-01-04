@@ -2,6 +2,23 @@
 const nextConfig = {
     reactStrictMode: false,
     productionBrowserSourceMaps: false,
+    async headers() {
+        return [
+          {
+            source: '/:path*',
+            headers: [
+              {
+                key: 'X-Frame-Options',
+                value: 'ALLOW-FROM https://kashi-os.pages.dev',
+              },
+              {
+                key: 'Content-Security-Policy',
+                value: "frame-ancestors 'self' https://kashi-os.pages.dev",
+              },
+            ],
+          },
+        ]
+      },
     async redirects() {
         return [
           // Basic redirect
