@@ -49,7 +49,7 @@ export function SignInForm() {
       return
     }
 
-    router.refresh()
+    // router.refresh()
     router.push("/setup")
   }
 

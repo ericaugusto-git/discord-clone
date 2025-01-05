@@ -8,7 +8,7 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => {console.log("token: ", token); return !!token }// Only allow authenticated users
+      authorized: ({ token }) => !!token 
     },
     pages: {
       signIn: "/sign-up",
@@ -23,6 +23,6 @@ export const config = {
     "/servers/:path*",
     "/setup",
     // Protect main app routes but not public assets
-    "/((?!api/auth|sign-in|sign-up|_next|favicon.ico|public|images|icons|auth-layout).*$)",
+    "/((?!api/auth|sign-in|sign-up|_next|favicon.ico|public|images|icons|auth-layout|api/register).*$)",
   ]
 }

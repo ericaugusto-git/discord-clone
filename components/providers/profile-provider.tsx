@@ -5,6 +5,7 @@ import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
 import { useSocket } from "./socket-provider";
+import { useSession } from "next-auth/react";
 
 const CurrentProfileContext = createContext<{ profile: Profile | null, setProfile: Dispatch<Profile | null> } | undefined>(undefined);
 
@@ -34,11 +35,13 @@ export const useCurrentProfile = () => {
 
 export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const {socket} = useSocket();
+  const session= useSession();
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        setLoading(true);
         const profile = (await axios.get('/api/current-profile')).data
         if(socket && profile){
           socket.emit("register_profile", profile)
@@ -51,8 +54,10 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       }
     };
-    fetchProfile();
-  }, [socket]);
+    if(session.data?.user.id){
+      fetchProfile();
+    }
+  }, [socket, session]);
 
   if (loading) {
     return             <div className="flex flex-col flex-1 justify-center items-center w-full h-full">

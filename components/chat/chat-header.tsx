@@ -35,9 +35,10 @@ const ChatHeader = () => {
                 {type === 'direct'  && (
                     <>
                         <UserAvatar
+                
                         name={direct?.otherMember.username}
                         src={direct?.otherMember.imageUrl!}
-                        className="h-8 w-8 md:h-8 md:w-8 mr-2 text-zinc-500 dark:text-zinc-400"
+                        className="h-8 w-8 md:h-8 md:w-8 mr-2 text-zinc-500 dark:text-zinc-400 text-xs"
                         />
                     </>
                 )}

@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
+import { signIn } from "next-auth/react"
 
 const formSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -39,8 +41,22 @@ export function SignUpForm() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setError(null)
-      await axios.post("/api/register", values)
-      router.push("/sign-up")
+      await axios.post("/api/register", values);
+      const result = await signIn("credentials", {
+        username: values.username,
+        password: values.password,
+        redirect: false,
+      })
+  
+      if (result?.error) {
+        toast.success('Account created! Please login.')
+        router.push("/sign-in")
+        return
+      }
+  
+      // router.refresh()
+      router.push("/setup")
+
     } catch (error: any) {
       setError(error?.response?.data || "Something went wrong")
     }

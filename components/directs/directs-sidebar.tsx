@@ -63,7 +63,7 @@ const DirectsSidebar = ({
                               <Plus className="size-4"/>
         </button>
       </div>
-        {filteredDirects?.map((direct) => {
+        {filteredDirects && filteredDirects?.map((direct) => {
           const otherGuy = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne; 
           return <DirectUser key={direct.id} profile={otherGuy} active={params?.profileId == otherGuy.id}/>;
         })}
