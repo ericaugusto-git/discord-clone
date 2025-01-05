@@ -150,6 +150,7 @@ export const ChatItem = (
             <div className="group flex gap-x-2 items-start w-full">
                 <div onClick={onMemberClick} className={cn("hover:drop-shadow-md transition", !isOwner && "cursor-pointer")}>
                     <UserAvatar
+                    name={chatProfile.username}
                     src={chatProfile?.imageUrl!}/>
                 </div>
                 <div className="flex flex-col w-full">
@@ -157,7 +158,7 @@ export const ChatItem = (
                     <div className="flex sm:items-center sm:flex-row gap-x-2 text-nowrap flex-col">
                         <div className="flex items-center">
                             <p onClick={onMemberClick} className="font-semibold text-sm hover:underline cursor-pointer">
-                                {chatProfile.name}
+                                {chatProfile.username}
                             </p>
                             {messageMember && <ActionTooltip label={messageMember.role}>
                                 {roleIconMap[messageMember.role]}

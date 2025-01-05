@@ -35,7 +35,7 @@ const DirectsSidebar = ({
     setFilteredDirects((lastFiltered) => {
       const filtered = lastFiltered?.filter((direct) => {
            const otherMember = direct.profileOne.id === profile.id ? direct.profileTwo : direct.profileOne;
-           return otherMember.name.toLocaleLowerCase().includes(value.toLowerCase())
+           return otherMember.username.toLocaleLowerCase().includes(value.toLowerCase())
          })
 
       return filtered as DirectWithProfile[];

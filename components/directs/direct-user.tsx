@@ -17,13 +17,14 @@ export default function DirectUser({profile, active}: {profile: Profile, active:
         )}
         >
             <UserAvatar
+            name={profile.username}
                 src={profile.imageUrl!}
-                className="h-8 w-8 md:h-8 md:w-8"
+                className="h-8 w-8 md:h-8 md:w-8 text-xs"
             />
             <p
             className={cn("text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition")}
             >
-                {profile.name}
+                {profile.username}
             </p>
         </button>
      );

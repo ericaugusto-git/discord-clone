@@ -45,7 +45,7 @@ const Direct = async ({params, searchParams}:MemberIdPageProps) => {
                 channelType={searchParams.video ? ChannelType.VIDEO : searchParams.audio ? ChannelType.AUDIO :  ChannelType.TEXT}
                 chat={{otherMember}}
                 currentProfile={profile}
-                name={otherMember.name}
+                name={otherMember.username}
             />
      </div>
     );

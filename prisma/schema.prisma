@@ -13,7 +13,6 @@ model Profile {
   id              String          @id @default(uuid())
   username        String          @unique
   hashedPassword  String
-  name            String
   imageUrl        String?         @db.Text
   email           String?         @db.Text
   createdAt       DateTime        @default(now())

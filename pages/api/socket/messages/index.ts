@@ -1,4 +1,5 @@
-import { channel } from 'diagnostics_channel';
+"use server"
+
 import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
 import { NextApiResponseServerIo } from "@/types";
@@ -9,7 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
         return res.status(405).json({error: "Method not allowed"})
     }
     try{
-        const profile = await currentProfilePages(req);
+        const profile = await currentProfilePages(req, res);
+        console.log("profile: ", profile)
         const {content, fileUrl} = req.body;
         const {serverId, channelId} = req.query;
 

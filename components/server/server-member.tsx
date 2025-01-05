@@ -35,6 +35,7 @@ const ServerMember = (
             params?.memberId === member.id && "bg-zinc-700/20 dark:bg-zinc-700")}
         >
             <UserAvatar
+                name={member.profile.username}
                 src={member.profile.imageUrl!}
                 className="h-8 w-8 md:h-8 md:w-8"
             />
@@ -42,7 +43,7 @@ const ServerMember = (
             className={cn("font-semibold text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition",
             params?.memberId === member.id && "text-primary dark:text-zinc-200 dark:group-hover:text-white")}
             >
-                {member.profile.name}
+                {member.profile.username}
             </p>
             {icon}
         </button>

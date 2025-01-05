@@ -40,9 +40,9 @@ export default function IncomingCall() {
             </DialogTitle> */}
         </DialogHeader>
         <div className="p-4 pt-1 flex items-center justify-center flex-col gap-2">
-        <UserAvatar src={caller?.imageUrl!} className="md:size-16"/>
+        <UserAvatar name={caller?.username!} src={caller?.imageUrl!} className="md:size-16"/>
             <div className="flex flex-col items-center">
-              <span>{caller?.name}</span>
+              <span>{caller?.username}</span>
               <span className="text-unfocus-grey dark:font-thin leading-3"> Is calling you, well you accept? </span>
             </div>
             <div className="flex gap-4 mt-2 text-white">

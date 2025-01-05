@@ -32,8 +32,7 @@ export function SignUpForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
-      password: "",
-      name: "",
+      password: ""
     },
   })
 
@@ -71,19 +70,6 @@ export function SignUpForm() {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name (Optional)</FormLabel>
-              <FormControl>
-                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -35,13 +35,14 @@ const ChatHeader = () => {
                 {type === 'direct'  && (
                     <>
                         <UserAvatar
+                        name={direct?.otherMember.username}
                         src={direct?.otherMember.imageUrl!}
                         className="h-8 w-8 md:h-8 md:w-8 mr-2 text-zinc-500 dark:text-zinc-400"
                         />
                     </>
                 )}
                 <p className="font-semibold text-black dark:text-white">
-                    {server?.name ?? direct?.otherMember.name}
+                    {server?.name ?? direct?.otherMember.username}
                 </p>
                 <div className="ml-auto flex item-center">
                     {type === "direct" && (<ChatVideoButton/>)}

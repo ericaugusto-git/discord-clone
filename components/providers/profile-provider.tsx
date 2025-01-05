@@ -36,13 +36,18 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const {socket} = useSocket();
-
+  console.log("current")
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const profile = (await axios.get('/api/current-profile')).data
-        if(socket)
-        socket.emit("register_profile", profile)
+        console.log(profile)
+        console.log(socket)
+        if(socket){
+          socket.emit("register_profile", profile)
+          console.log("emitting")
+        }
+          
         setProfile(profile);
       } catch (error) {
         console.error('Failed to fetch profile:', error);
@@ -50,7 +55,6 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       }
     };
-
     fetchProfile();
   }, [socket]);
 

@@ -1,5 +1,6 @@
 import { Hash } from "lucide-react";
 import BackgroundImage from "../ui/background-image";
+import UserAvatar from "../user-avatar";
 
 interface ChatWelcomeProps {
     name: string;
@@ -14,7 +15,7 @@ const ChatWelcome = ({type, name, directPicture}: ChatWelcomeProps) => {
             <div className="h-[75px] w-[75px] rounded-full bg-zinc-500 dark:bg-zinc-700 flex items-center justify-center">
                 <Hash className="h-12 w-12 text-white"/>
             </div>
-        ) : directPicture && <BackgroundImage className="rounded-full" src={directPicture} size={75}/>}
+        ) : <UserAvatar name={name} src={directPicture!} className="md:size-20 text-[2em]"/>}
         <p className="text-xl md:text-3xl font-bold">
             {type === "channel" ? "Welcome to #" : ""}{name}
         </p>

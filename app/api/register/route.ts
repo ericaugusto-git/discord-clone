@@ -27,7 +27,6 @@ export async function POST(req: Request) {
       data: {
         username,
         hashedPassword,
-        name: name ?? username,
       }
     })
 

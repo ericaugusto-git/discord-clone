@@ -23,7 +23,6 @@ export async function initialProfile() {
         data: {
             id: session.user.id,
             hashedPassword: session.user.hashedPassword,
-            name: session.user.name ?? session.user.username,
             imageUrl: session.user.image ?? "",
             username: session.user.username
         }

@@ -95,7 +95,7 @@ export const SocketProvider = ({
               />
             )}
             <div>
-              <strong>{sender.name} sent you a new message</strong>
+              <strong>{sender.username} sent you a new message</strong>
               <p className="line-clamp-3">{message}</p>
             </div>
             <button

@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponseS
             return res.status(405).json({error: "Method not allowed"});
         }
 
-        const profile = await currentProfilePages(req);
+        const profile = await currentProfilePages(req, res);
 
         const {messageId, serverId, channelId} = req.query;
         const {content} = req.body;
