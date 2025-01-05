@@ -11,6 +11,18 @@ const nextConfig = {
               key: "Content-Security-Policy",
               value: "frame-ancestors 'self' https://kashi-os.pages.dev;",
             },
+            {
+              key: "Access-Control-Allow-Origin",
+              value: "https://kashi-os.pages.dev",
+            },
+            {
+              key: "Access-Control-Allow-Methods",
+              value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+            },
+            {
+              key: "Access-Control-Allow-Credentials",
+              value: "true",
+            },
           ],
         },
       ];

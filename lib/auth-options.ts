@@ -1,10 +1,8 @@
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { AuthOptions } from "next-auth"
 import { db } from "@/lib/db"
-import NextAuth from "next-auth/next"
-import CredentialsProvider from "next-auth/providers/credentials"
+import { PrismaAdapter } from "@auth/prisma-adapter"
 import bcrypt from "bcrypt"
-import { Profile } from "@prisma/client"
+import { AuthOptions } from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(db),
@@ -50,7 +48,7 @@ export const authOptions: AuthOptions = {
     signIn: '/sign-in',
   },
   callbacks: {
-    async jwt({ token, user }: { token: any, user: any }) {
+    async jwt({ token, user }: {token: any, user: any}) {
       if (user) {
         token.id = user.id;
         token.username = user.username;
@@ -65,7 +63,17 @@ export const authOptions: AuthOptions = {
       return session;
     }
   },
+  useSecureCookies: process.env.NODE_ENV === 'production',
+  cookies: {
+    sessionToken: {
+      name: 'next-auth.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        path: '/',
+        secure: true,
+        domain: process.env.NODE_ENV === 'production' ? '.your-domain.com' : undefined
+      }
+    }
+  }
 }
-
-const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST }
