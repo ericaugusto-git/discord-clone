@@ -66,14 +66,30 @@ export const authOptions: AuthOptions = {
   useSecureCookies: process.env.NODE_ENV === 'production',
   cookies: {
     sessionToken: {
-      name: 'next-auth.session-token',
+      name: `__Secure-next-auth.session-token`,
       options: {
+        path: '/',
         httpOnly: true,
         sameSite: 'none',
-        path: '/',
         secure: true,
-        domain: process.env.NODE_ENV === 'production' ? '.your-domain.com' : undefined
-      }
-    }
+      },
+    },
+    callbackUrl: {
+      name: `__Secure-next-auth.callback-url`,
+      options: {
+        path: '/',
+        sameSite: 'none',
+        secure: true,
+      },
+    },
+    csrfToken: {
+      name: `__Host-next-auth.csrf-token`,
+      options: {
+        path: '/',
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+      },
+    },
   }
 }
