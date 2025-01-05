@@ -8,7 +8,7 @@ export default function AuthLayout({children}: {children: React.ReactNode}){
                 {children}
             </div>
             
-            <BackgroundImage src="/trendy-abstract-chrome-background-with-gradient-colors.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2  hidden lg:flex text-white">
+            <BackgroundImage src="/auth-layout/trendy-abstract-chrome-background-with-gradient-colors.jpg" size={'100%'} width={'50%'} className="rounded-bento-item-radius justify-between flex-col p-2  hidden lg:flex text-white">
             <a target="_blank" href="https://www.freepik.com/free-photo/trendy-abstract-chrome-background-with-gradient-colors_43059602.htm#fromView=search&page=14&position=29&uuid=2e7efc75-8fd8-4e14-8a89-d287a735f29e" className="border border-white/30 text-white/80 rounded-[19px] px-4 m-2 W hover:text-blue-300 cursor-pointer">
                 Image by BiZkettE1 on Freepik
                 </a>
