@@ -35,14 +35,14 @@ export const useCurrentProfile = () => {
 
 export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<Profile | null>(null);
-  console.log(profile)
+  const session= useSession();
   const [loading, setLoading] = useState<boolean>(true);
   const initialMount = useRef(true);
   const {socket} = useSocket();
-  const session= useSession();
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        if(initialMount.current) setLoading(true);
         const profile = (await axios.get('/api/current-profile')).data
         if(socket && profile){
           initialMount.current = false;
@@ -60,6 +60,10 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
       fetchProfile();
     }
   }, [socket, session]);
+
+  useEffect(() => {
+    setLoading((prev) => {if(session.status === 'unauthenticated') return false; else return prev});
+  }, [session])
 
   if (loading) {
     return             <div className="flex flex-col flex-1 justify-center items-center w-full h-full">
