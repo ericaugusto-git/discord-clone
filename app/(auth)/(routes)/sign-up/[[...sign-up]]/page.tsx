@@ -3,10 +3,10 @@ import Link from "next/link"
 
 export default function SignUp() {
   return (
-    <div className="flex flex-col space-y-6 w-full max-w-md mx-auto p-6">
+    <div className="flex flex-col space-y-6 w-full max-w-md  md:min-w-96 mx-auto p-6">
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
-          Create an account
+          Create an ✨ new account
         </h1>
         <p className="text-sm text-muted-foreground">
           Enter your details to sign up

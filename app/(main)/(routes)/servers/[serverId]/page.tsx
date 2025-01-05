@@ -14,7 +14,7 @@ const ServerIdPage = async ({
     const profile = await currentProfile();
 
     if(!profile){
-        return redirect("/sign-in");
+        return redirect("/sign-up");
     }
 
     const server = await db.server.findUnique({

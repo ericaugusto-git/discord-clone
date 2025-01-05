@@ -13,7 +13,7 @@ interface ChannelIdPageProps {
 const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
     const profile = await currentProfile();
     if(!profile){
-        return redirect("/sign-in");
+        return redirect("/sign-up");
     }
     const channel = await db.channel.findUnique({
         where: {

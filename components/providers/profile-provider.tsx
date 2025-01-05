@@ -36,16 +36,12 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const {socket} = useSocket();
-  console.log("current")
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const profile = (await axios.get('/api/current-profile')).data
-        console.log(profile)
-        console.log(socket)
-        if(socket){
+        if(socket && profile){
           socket.emit("register_profile", profile)
-          console.log("emitting")
         }
           
         setProfile(profile);

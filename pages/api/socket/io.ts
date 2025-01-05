@@ -23,8 +23,8 @@ const ioHandler = async (req: NextApiRequest, res: NextApiResponseServerIo) => {
         const socketIds = new Map<string, string>(); // Key: profileId, Value: socketId
         io.on("connection", (socket) => {
          socket.on("register_profile", (profile: Profile) => {
-                console.log("register_profile: ", profile)
-                profiles.set(socket.id, profile);
+              if(!profile) return;
+              profiles.set(socket.id, profile);
                 socketIds.set(profile.id, socket.id);
                 socket.on("disconnect", () => {
                   profiles.delete(profile.id);

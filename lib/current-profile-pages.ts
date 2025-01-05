@@ -8,8 +8,6 @@ import { getServerSession } from 'next-auth';
 
 export async function currentProfilePages(req: NextApiRequest, res: NextApiResponseServerIo) {
     const session  = await getServerSession(req, res, authOptions);
-    console.log("session: ", session)
-
     if (!session?.user?.id) {
         return null;
     }

@@ -24,7 +24,7 @@ export default function RootLayout({children,}: { children: React.ReactNode}) {
     <SessionWrapper 
     >
     <html lang="en" suppressHydrationWarning >
-      <body className={cn(font.className, "bg-[#f7f7f8] dark:bg-[#1D1D1D]")} >
+      <body className={cn(font.className, "bg-[#f7f7f8] dark:bg-[#09090b]")} >
         <ThemeProvider 
         attribute='class'
         defaultTheme='dark'

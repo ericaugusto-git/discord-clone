@@ -9,7 +9,7 @@ const ServerIdLaayout = async (
 ) => {
     const profile = await currentProfile();
     if(!profile){
-        redirect("/sign-in");
+        redirect("/sign-up");
     }
     // const server = await db.server.findUnique({
     //     where: {

@@ -40,7 +40,7 @@ export function SignUpForm() {
     try {
       setError(null)
       await axios.post("/api/register", values)
-      router.push("/sign-in")
+      router.push("/sign-up")
     } catch (error: any) {
       setError(error?.response?.data || "Something went wrong")
     }
@@ -56,7 +56,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="username"/>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +69,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" {...field} />
+                <Input type="password" placeholder="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
