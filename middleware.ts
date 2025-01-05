@@ -23,6 +23,6 @@ export const config = {
     "/servers/:path*",
     "/setup",
     // Protect main app routes but not public assets
-    "/((?!api/auth|sign-in|sign-up|_next|favicon.ico|public|images|icons|auth-layout|api/register).*$)",
+    "/((?!api/auth|sign-in|sign-up|_next|favicon.ico|public|images|icons|auth-layout|api/register|api/uploadthing).*$)",
   ]
 }

@@ -35,14 +35,14 @@ export const useCurrentProfile = () => {
 
 export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  console.log(profile)
+  const [loading, setLoading] = useState<boolean>(true);
   const initialMount = useRef(true);
   const {socket} = useSocket();
   const session= useSession();
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        if(initialMount) setLoading(true);
         const profile = (await axios.get('/api/current-profile')).data
         if(socket && profile){
           initialMount.current = false;
@@ -56,7 +56,7 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       }
     };
-    if(session.data?.user.id){
+    if(session.data?.user.id && profile?.id != session.data.user.id){
       fetchProfile();
     }
   }, [socket, session]);
