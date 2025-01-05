@@ -53,6 +53,7 @@ const FileUpload = ({onChange, value, endpoint}: FIleUploadProps) => {
     <UploadDropzone
     endpoint={endpoint}
     onClientUploadComplete={(res) => {
+        console.log(res)
         onChange(res?.[0].url)
       }}
       onUploadError={(error: Error) => {

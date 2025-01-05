@@ -3,7 +3,7 @@
 import { Profile } from "@prisma/client";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
-import { createContext, Dispatch, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { useSocket } from "./socket-provider";
 import { useSession } from "next-auth/react";
 
@@ -36,14 +36,16 @@ export const useCurrentProfile = () => {
 export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const initialMount = useRef(true);
   const {socket} = useSocket();
   const session= useSession();
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        setLoading(true);
+        if(initialMount) setLoading(true);
         const profile = (await axios.get('/api/current-profile')).data
         if(socket && profile){
+          initialMount.current = false;
           socket.emit("register_profile", profile)
         }
           
