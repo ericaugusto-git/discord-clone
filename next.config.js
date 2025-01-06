@@ -9,7 +9,7 @@ const nextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://kashi-os.pages.dev https://discourse-live-chat.onrender.com http://localhost:3000;",
+            value: `frame-ancestors 'self' https://kashi-os.pages.dev https://discourse-live-chat.onrender.com ${process.env.NODE_ENV === 'production' ? '' : "http://localhost:3000"};` ,
           },
           {
             key: "Access-Control-Allow-Origin",
